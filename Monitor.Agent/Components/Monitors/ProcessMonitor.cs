@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace Monitor.Agent
 {
@@ -22,12 +23,18 @@ namespace Monitor.Agent
             var process = new Process();
             process.StartInfo = processStartInfo;
             process.EnableRaisingEvents = true;
-            process.OutputDataReceived += (sender, args) => Console.WriteLine(args.Data);
+            process.OutputDataReceived += OutputReceived;
+            process.ErrorDataReceived += OutputReceived;
+            
 
             process.Start();
             process.BeginOutputReadLine();
             process.WaitForExit();
             process.CancelOutputRead();
+        }
+        public void OutputReceived(object sender, DataReceivedEventArgs e) 
+        {
+            Console.WriteLine(e.Data);
         }
     }
 }
