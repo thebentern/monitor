@@ -1,0 +1,4 @@
+C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Core\bin\Debug\Monitor.Handlers.Core.dll
+C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Core\bin\Debug\Monitor.Handlers.Core.pdb
+C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.dll
+C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.pdb

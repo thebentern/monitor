@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6E1E50CB-2500-47A3-8D0B-D4AE5BDB2EA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{668397E1-7EDB-4FC4-A027-CB5FF488C8E3}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Handlers.Redis", "Monitor.Handlers.Redis\Monitor.Handlers.Redis.csproj", "{F79CDA1B-548E-415E-A020-12CA8BE503FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Handlers.Core", "Monitor.Handlers.Core\Monitor.Handlers.Core.csproj", "{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Tests", "Monitor.Tests\Monitor.Tests.csproj", "{714C53BF-EECB-42D0-9F6D-DA45603D4783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Agent.Console", "Monitor.Agent.Console\Monitor.Agent.Console.csproj", "{008D6539-DCF7-484B-801F-AD7884FDB868}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F79CDA1B-548E-415E-A020-12CA8BE503FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F79CDA1B-548E-415E-A020-12CA8BE503FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F79CDA1B-548E-415E-A020-12CA8BE503FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F79CDA1B-548E-415E-A020-12CA8BE503FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714C53BF-EECB-42D0-9F6D-DA45603D4783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714C53BF-EECB-42D0-9F6D-DA45603D4783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714C53BF-EECB-42D0-9F6D-DA45603D4783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714C53BF-EECB-42D0-9F6D-DA45603D4783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{008D6539-DCF7-484B-801F-AD7884FDB868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{008D6539-DCF7-484B-801F-AD7884FDB868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{008D6539-DCF7-484B-801F-AD7884FDB868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{008D6539-DCF7-484B-801F-AD7884FDB868}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
