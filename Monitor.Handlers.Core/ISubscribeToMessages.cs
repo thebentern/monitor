@@ -7,7 +7,7 @@ namespace Monitor.Core
     {
         string Channel { get; }
 
-        void Subscribe(Action<Message> callback);
-        Task SubscribeAsync(Action<Message> callback);
+        void Subscribe( Action<IMessage> callback );
+        Task SubscribeAsync( Action<IMessage> callback );
     }
 }

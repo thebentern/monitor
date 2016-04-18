@@ -14,3 +14,4 @@ C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Host\StackExcha
 C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Host\Newtonsoft.Json.xml
 C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\obj\Process\Monitor.Agent.Console.exe
 C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\obj\Process\Monitor.Agent.Console.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\obj\Process\Monitor.Agent.Console.csprojResolveAssemblyReference.cache

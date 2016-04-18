@@ -1,8 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Monitor.Core;
 
@@ -12,20 +10,20 @@ namespace Monitor.Handlers.Redis
     {
         public RedisMessageSubscriber( string host, string channel ) : base( host, channel ) { }
 
-        public void Subscribe( Action<Message> callback )
+        public void Subscribe( Action<IMessage> callback )
         {
             subscriber.Subscribe( redisChannel, CreateMessageHandler( callback ) );
         }
 
-        public async Task SubscribeAsync( Action<Message> callback )
+        public async Task SubscribeAsync( Action<IMessage> callback )
         {
             await subscriber.SubscribeAsync( redisChannel, CreateMessageHandler( callback ) );
         }
 
-        private Action<RedisChannel, RedisValue> CreateMessageHandler( Action<Message> action )
+        private Action<RedisChannel, RedisValue> CreateMessageHandler( Action<IMessage> action )
         {
             return new Action<RedisChannel, RedisValue>( ( c, m ) =>
-                action.Invoke( JsonConvert.DeserializeObject<Message>( m ) )
+                action.Invoke( JsonConvert.DeserializeObject<IMessage>( m ) )
             );
         }
     }

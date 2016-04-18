@@ -13,3 +13,18 @@ C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Test
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Tests\bin\Debug\Monitor.Handlers.Redis.pdb
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Tests\bin\Debug\StackExchange.Redis.xml
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Monitor.Tests.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Monitor.Tests.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Monitor.Handlers.Core.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Monitor.Handlers.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\nunit.framework.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\StackExchange.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Monitor.Handlers.Core.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Monitor.Handlers.Redis.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\nunit.framework.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\StackExchange.Redis.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\obj\Debug\Monitor.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\obj\Debug\Monitor.Tests.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Tests\obj\Debug\Monitor.Tests.pdb

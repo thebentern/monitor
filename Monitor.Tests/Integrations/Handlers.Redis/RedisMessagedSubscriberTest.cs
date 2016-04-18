@@ -23,7 +23,6 @@ namespace Monitor.Tests.Integrations.Redis
             var result = await redisPublisher.PublishAsync(newMessage);
         }
 
-
-        private void CheckMessage(Message message) => Assert.AreEqual(message.Content, "Derp");
+        private void CheckMessage(IMessage message) => Assert.AreEqual(message.Content, "Derp");
     }
 }

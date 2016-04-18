@@ -7,7 +7,7 @@ namespace Monitor.Core
         string Channel { get; }
         string Origin { get; }
 
-        long Publish(Message message);
-        Task<long> PublishAsync(Message message);
+        long Publish( IMessage message );
+        Task<long> PublishAsync( IMessage message );
     }
 }

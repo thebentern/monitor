@@ -11,6 +11,5 @@ namespace Monitor.Agent.Console
     {
         void Monitor(IPublishMessages messagePublisher);
         void MonitorAsync(IPublishMessages messagePublisher);
-
     }
 }

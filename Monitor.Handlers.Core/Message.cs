@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Monitor.Core
 {
-    public abstract class Message
+    public interface IMessage
     {
-        public string Channel { get; protected set; }
-        public string Origin { get; protected set; }
-        public DateTime Timestamp { get; set; }
-        public string Content { get; set; }
-        public Dictionary<string, string> CustomAttributes { get; set; }
+        string Channel { get; set; }
+        string Origin { get; set; }
+        DateTime Timestamp { get; set; }
+        string Content { get; set; }
+        Dictionary<string, string> CustomAttributes { get; set; }
     }
 }
