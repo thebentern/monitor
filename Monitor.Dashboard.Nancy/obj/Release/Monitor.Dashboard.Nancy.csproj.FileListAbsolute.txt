@@ -1,0 +1,11 @@
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Views\index.sshtml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Content\nancy-logo.png
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Monitor.Dashboard.Nancy.exe
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Monitor.Dashboard.Nancy.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Nancy.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Nancy.Hosting.Self.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Nancy.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\bin\Release\Nancy.Hosting.Self.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\obj\Release\Monitor.Dashboard.Nancy.csprojResolveAssemblyReference.cache
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\obj\Release\Monitor.Dashboard.Nancy.exe
+C:\Users\Meadors\Source\Github\monitor\Monitor.Dashboard.Nancy\obj\Release\Monitor.Dashboard.Nancy.pdb

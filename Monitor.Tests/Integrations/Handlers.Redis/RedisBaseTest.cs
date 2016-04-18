@@ -13,7 +13,7 @@ namespace Monitor.Tests.Integrations.Redis
     {
         protected string Channel = "Default";
         protected string Host = "localhost";
-        protected DefaultMessage newMessage = new DefaultMessage()
+        protected IMessage newMessage = new DefaultMessage()
         {
             Content = "Derp"
         };
