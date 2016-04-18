@@ -30,7 +30,7 @@ namespace Monitor.Agent.Console
 
             p.Setup(arg => arg.Process)
             .As('p', "process")
-            .WithDescription("Process (and arguments) to host inside agent");
+            .WithDescription("Process (and arguments) to host in the agent");
 
             p.Setup(arg => arg.StdOut)
             .As('s', "stdout")

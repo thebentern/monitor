@@ -9,3 +9,14 @@ C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Hand
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.pdb
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Redis\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Handlers.Redis\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Redis.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Core.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\StackExchange.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Core.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\StackExchange.Redis.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.csprojResolveAssemblyReference.cache
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.pdb
