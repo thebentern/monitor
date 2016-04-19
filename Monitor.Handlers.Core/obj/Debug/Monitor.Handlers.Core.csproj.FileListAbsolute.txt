@@ -6,4 +6,3 @@ C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\bin\Debug\Monitor.H
 C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\bin\Debug\Monitor.Handlers.Core.pdb
 C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.dll
 C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.pdb
-C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.csprojResolveAssemblyReference.cache

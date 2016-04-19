@@ -1,0 +1,17 @@
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Agent.Console.exe.config
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Agent.Console.exe
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Agent.Console.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\FluentCommandLineParser.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Handlers.Core.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Handlers.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\StackExchange.Redis.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Newtonsoft.Json.dll
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Handlers.Core.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Monitor.Handlers.Redis.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\FluentCommandLineParser.pdb
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\FluentCommandLineParser.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\StackExchange.Redis.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\bin\Release\Newtonsoft.Json.xml
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\obj\Release\Monitor.Agent.Console.csprojResolveAssemblyReference.cache
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\obj\Release\Monitor.Agent.Console.exe
+C:\Users\Meadors\Source\Github\monitor\Monitor.Agent.Console\obj\Release\Monitor.Agent.Console.pdb

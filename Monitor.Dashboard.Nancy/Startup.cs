@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Owin;
-
+using Microsoft.AspNet.SignalR;
+using Microsoft.Owin.Cors;
 
 namespace Monitor.Dashboard.Nancy
 {
@@ -12,7 +13,12 @@ namespace Monitor.Dashboard.Nancy
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseNancy();
+            app
+                .MapSignalR("/signalr", new HubConfiguration()
+                {
+                    EnableJavaScriptProxies = true
+                })
+                .UseNancy();
         }
     }
 }
