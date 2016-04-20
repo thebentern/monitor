@@ -10,7 +10,7 @@ namespace Monitor.Agent.Console
 {
     public sealed class ProcessMonitor : IMonitor
     {
-        private ProcessStartInfo processStartInfo;
+        private readonly ProcessStartInfo processStartInfo;
         private IPublishMessages messagePublisher;
 
         public ProcessMonitor( string process )

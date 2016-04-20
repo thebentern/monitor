@@ -9,21 +9,20 @@ namespace Monitor.Handlers.Redis
 {
     public class RedisSubscription : IDisposable
     {
-        private ConnectionMultiplexer redis;
+        private readonly ConnectionMultiplexer redis;
 
         protected ISubscriber subscriber;
-        protected RedisChannel redisChannel; 
-        private readonly string channelName;
+        protected RedisChannel redisChannel;
 
         public RedisSubscription( string host, string channel )
         {
-            channelName = channel;
+            Channel = channel;
             redis = ConnectionMultiplexer.Connect( host );
             redisChannel = new RedisChannel( channel, RedisChannel.PatternMode.Literal );
             subscriber = redis.GetSubscriber();
         }
 
-        public string Channel => channelName;
+        public string Channel { get; }
 
         public void Dispose()
         {

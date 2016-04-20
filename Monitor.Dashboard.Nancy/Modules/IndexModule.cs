@@ -6,10 +6,7 @@ namespace Monitor.Dashboard.Nancy.Modules
     {
         public IndexModule()
         {
-            Get["/"] = _ =>
-            {
-                return View["index"];
-            };
+            Get["/"] = _ => View["index"];
         }
     }
 }

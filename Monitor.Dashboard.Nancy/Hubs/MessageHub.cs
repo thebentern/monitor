@@ -7,10 +7,10 @@ namespace Monitor.Dashboard.Nancy.Hubs
 {
     public class MessageHub : Hub
     {
-        public ISubscribeToMessages messages = new RedisMessageSubscriber("localhost", "Default");
+        public ISubscribeToMessages Messages = new RedisMessageSubscriber("localhost", "Default");
         public MessageHub()
         {
-              messages.Subscribe(Broadcast);
+              Messages.Subscribe(Broadcast);
         }
         private void Broadcast(IMessage message)
         {
