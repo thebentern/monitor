@@ -2,12 +2,12 @@
 
 namespace Monitor.Core
 {
-    public interface IPublishMessages
+    public interface IPublishMessages<T> where T : IMessage
     {
         string Channel { get; }
         string Origin { get; }
 
-        long Publish( IMessage message );
-        Task<long> PublishAsync( IMessage message );
+        long Publish( T message );
+        Task<long> PublishAsync( T message );
     }
 }

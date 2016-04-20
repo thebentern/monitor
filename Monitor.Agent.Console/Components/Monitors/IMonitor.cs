@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
-    public interface IMonitor
+    public interface IMonitor<T> where T : IMessage
     {
-        void Monitor(IPublishMessages messagePublisher);
-        void MonitorAsync(IPublishMessages messagePublisher);
+        void Monitor(IPublishMessages<T> messagePublisher) ;
+        void MonitorAsync(IPublishMessages<T> messagePublisher);
     }
 }

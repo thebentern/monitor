@@ -24,9 +24,6 @@ namespace Monitor.Handlers.Redis
 
         public string Channel { get; }
 
-        public void Dispose()
-        {
-            redis?.Close();
-        }
+        public void Dispose() => redis?.Close();
     }
 }

@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
-    public sealed class StdOutMonitor : IMonitor
+    public sealed class StdOutMonitor : IMonitor<DefaultMessage>
     {
-        private IPublishMessages messagePublisher;
+        private IPublishMessages<DefaultMessage> messagePublisher;
 
         public StdOutMonitor() { }
 
-        public void Monitor(IPublishMessages publisher)
+        public void Monitor(IPublishMessages<DefaultMessage> publisher)
         {
             messagePublisher = publisher;
             CaptureStdOut(Publish);
         }
 
-        public void MonitorAsync(IPublishMessages publisher)
+        public void MonitorAsync(IPublishMessages<DefaultMessage> publisher)
         {
             messagePublisher = publisher;
             CaptureStdOut(PublishAsync);

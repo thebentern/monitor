@@ -6,25 +6,25 @@ using Monitor.Core;
 
 namespace Monitor.Handlers.Redis
 {
-    public sealed class RedisMessageSubscriber : RedisSubscription, ISubscribeToMessages
+    public sealed class RedisMessageSubscriber<T> : RedisSubscription, ISubscribeToMessages<T> where T : IMessage
     {
         public RedisMessageSubscriber( string host, string channel ) : base( host, channel ) { }
 
-        public void Subscribe( Action<IMessage> callback )
+        public void Subscribe( Action<T> callback )
         {
             subscriber.Subscribe( redisChannel, CreateMessageHandler( callback ) );
         }
 
-        public async Task SubscribeAsync( Action<IMessage> callback )
+        public async Task SubscribeAsync( Action<T> callback )
         {
             await subscriber.SubscribeAsync( redisChannel, CreateMessageHandler( callback ) );
         }
 
-        private Action<RedisChannel, RedisValue> CreateMessageHandler( Action<IMessage> action )
+        private Action<RedisChannel, RedisValue> CreateMessageHandler( Action<T> action )
         {
-            return new Action<RedisChannel, RedisValue>( ( c, m ) =>
-                action.Invoke( JsonConvert.DeserializeObject<IMessage>( m ) )
-            );
+            return
+                new Action<RedisChannel, RedisValue>(
+                    (c, m) => action.Invoke(JsonConvert.DeserializeObject<T>(m)));
         }
     }
 }

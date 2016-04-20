@@ -12,7 +12,7 @@ namespace Monitor.Agent.Console
     {
         public static void Main(string[] args)
         {
-            IMonitor process;
+            IMonitor<DefaultMessage> process;
             var parser = ArgumentSetup.Init();
             var result = parser.Parse(args);
             var agentArgs = parser.Object;
@@ -26,7 +26,7 @@ namespace Monitor.Agent.Console
                 else
                     process = new ProcessMonitor( agentArgs.Process );
 
-                IPublishMessages publisher = CreateRedisPublisher( agentArgs.RedisHost, 
+                IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.RedisHost, 
                     agentArgs.Channel, 
                     agentArgs.Origin );
 
@@ -34,9 +34,9 @@ namespace Monitor.Agent.Console
             }
         }
 
-        public static IPublishMessages CreateRedisPublisher(string host, string channel, string origin)
+        public static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)
         {
-            var publisher = new RedisMessagePublisher(host, channel, origin);
+            var publisher = new RedisMessagePublisher<DefaultMessage>(host, channel, origin);
             return publisher;
         }
     }

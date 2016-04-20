@@ -10,3 +10,4 @@ C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Core\bin\Debug\Monit
 C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Core\bin\Debug\Monitor.Handlers.Core.pdb
 C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.dll
 C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Core\obj\Debug\Monitor.Handlers.Core.csprojResolveAssemblyReference.cache

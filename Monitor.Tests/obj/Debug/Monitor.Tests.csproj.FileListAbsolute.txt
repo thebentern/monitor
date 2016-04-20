@@ -44,3 +44,4 @@ C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Tests\bin\Debug\Newtonsoft.Js
 C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Tests\obj\Debug\Monitor.Tests.csprojResolveAssemblyReference.cache
 C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Tests\obj\Debug\Monitor.Tests.dll
 C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Tests\obj\Debug\Monitor.Tests.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Tests\bin\Debug\Monitor.Tests.dll.config

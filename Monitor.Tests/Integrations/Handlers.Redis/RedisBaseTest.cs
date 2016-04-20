@@ -1,31 +1,30 @@
 ﻿using Monitor.Core;
 using Monitor.Handlers.Redis;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Monitor.Tests.Integrations.Redis
 {
+    /// <summary>
+    /// Base class for Redis tests
+    /// </summary>
     public class RedisBaseTest
     {
         protected string Channel = "Default";
-        protected string Host = "localhost";
-        protected IMessage newMessage = new DefaultMessage()
+        protected string Host = ConfigurationManager.AppSettings["RedisHost"] ?? "localhost";
+        protected DefaultMessage newMessage = new DefaultMessage()
         {
             Content = "Derp"
         };
 
-        protected RedisMessagePublisher redisPublisher;
-        protected RedisMessageSubscriber redisSubscriber;
+        protected RedisMessagePublisher<DefaultMessage> redisPublisher;
+        protected RedisMessageSubscriber<DefaultMessage> redisSubscriber;
 
         [SetUp]
         public void Init()
         {
-            redisPublisher = new RedisMessagePublisher(Host, Channel);
-            redisSubscriber = new RedisMessageSubscriber(Host, Channel);
+            redisPublisher = new RedisMessagePublisher<DefaultMessage>(Host, Channel);
+            redisSubscriber = new RedisMessageSubscriber<DefaultMessage>(Host, Channel);
         }
 
         [TearDown]

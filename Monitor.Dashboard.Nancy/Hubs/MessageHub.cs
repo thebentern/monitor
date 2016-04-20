@@ -7,7 +7,7 @@ namespace Monitor.Dashboard.Nancy.Hubs
 {
     public class MessageHub : Hub
     {
-        public ISubscribeToMessages Messages = new RedisMessageSubscriber("localhost", "Default");
+        public ISubscribeToMessages<DefaultMessage> Messages = new RedisMessageSubscriber<DefaultMessage>("10.0.2.2", "Default");
         public MessageHub()
         {
               Messages.Subscribe(Broadcast);

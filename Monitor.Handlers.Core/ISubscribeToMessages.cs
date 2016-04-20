@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace Monitor.Core
 {
-    public interface ISubscribeToMessages
+    public interface ISubscribeToMessages<T> where T : IMessage
     {
         string Channel { get; }
 
-        void Subscribe( Action<IMessage> callback );
-        Task SubscribeAsync( Action<IMessage> callback );
+        void Subscribe( Action<T> callback );
+        Task SubscribeAsync( Action<T> callback );
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
-    public sealed class ProcessMonitor : IMonitor
+    public sealed class ProcessMonitor : IMonitor<DefaultMessage>
     {
         private readonly ProcessStartInfo processStartInfo;
-        private IPublishMessages messagePublisher;
+        private IPublishMessages<DefaultMessage> messagePublisher;
 
         public ProcessMonitor( string process )
         {
@@ -27,12 +27,12 @@ namespace Monitor.Agent.Console
                 FileName = process
             };
         }
-        public void Monitor( IPublishMessages publisher )
+        public void Monitor( IPublishMessages<DefaultMessage> publisher )
         {
             messagePublisher = publisher;
             StartProcess(MessageHandler);
         }
-        public void MonitorAsync(IPublishMessages publisher)
+        public void MonitorAsync( IPublishMessages<DefaultMessage> publisher )
         {
             messagePublisher = publisher;
             StartProcess(MessageHandlerAsync);
@@ -56,23 +56,23 @@ namespace Monitor.Agent.Console
 
         private void MessageHandler(object sender, DataReceivedEventArgs e)
         {
-            var message = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
+            var message = new DefaultMessage( messagePublisher.Channel, messagePublisher.Origin )
             {
                 Content = e.Data
             };
             messagePublisher.Publish( message );
             //Should continue output from process (like tee)
-            System.Console.WriteLine(e.Data);
+            System.Console.WriteLine( e.Data );
         }
         private async void MessageHandlerAsync(object sender, DataReceivedEventArgs e)
         {
-            var message = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
+            var message = new DefaultMessage( messagePublisher.Channel, messagePublisher.Origin )
             {
                 Content = e.Data
             };
             //Should continue output from process (like tee)
-            System.Console.WriteLine(e.Data);
-            await messagePublisher.PublishAsync(message);
+            System.Console.WriteLine( e.Data );
+            await messagePublisher.PublishAsync( message );
         }
     }
 }

@@ -8,24 +8,22 @@ using Monitor.Core;
 
 namespace Monitor.Handlers.Redis
 {
-    public class RedisMessagePublisher : RedisSubscription, IPublishMessages
+    public class RedisMessagePublisher<T> : RedisSubscription, IPublishMessages<T> where T : IMessage
     {
-        public string originName = "Default";
-
         public RedisMessagePublisher( string host, string channel, string origin = null ) : base(host, channel)
         {
             if (origin != null)
-                originName = origin;
+                Origin = origin;
         }
 
-        public string Origin => originName;
+        public string Origin { get; } = "Default";
 
-        public long Publish( IMessage message )
+        public long Publish( T message )
         {
             return subscriber.Publish( redisChannel, JsonConvert.SerializeObject(message) );
         }
 
-        public async Task<long> PublishAsync( IMessage message )
+        public async Task<long> PublishAsync( T message )
         {
             return await subscriber.PublishAsync( redisChannel, JsonConvert.SerializeObject(message) );
         }
