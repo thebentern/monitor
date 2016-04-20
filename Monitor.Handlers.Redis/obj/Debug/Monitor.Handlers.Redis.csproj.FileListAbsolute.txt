@@ -20,3 +20,15 @@ C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\bin\Debug\StackExc
 C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.csprojResolveAssemblyReference.cache
 C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.dll
 C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.csprojResolveAssemblyReference.cache
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Redis.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Redis.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Core.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\Newtonsoft.Json.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\StackExchange.Redis.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\Monitor.Handlers.Core.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\Newtonsoft.Json.xml
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\StackExchange.Redis.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\bin\Debug\StackExchange.Redis.xml
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Handlers.Redis\obj\Debug\Monitor.Handlers.Redis.pdb

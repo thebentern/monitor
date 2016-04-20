@@ -15,3 +15,21 @@ C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Agen
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Agent.Console\bin\Debug\FluentCommandLineParser.dll
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Agent.Console\bin\Debug\FluentCommandLineParser.pdb
 C:\Users\Meadors\Documents\Visual Studio 2015\Projects\Monitor.Core\Monitor.Agent.Console\bin\Debug\FluentCommandLineParser.xml
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\obj\Debug\Monitor.Agent.Console.csprojResolveAssemblyReference.cache
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Agent.Console.exe.config
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Agent.Console.exe
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Agent.Console.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\FluentCommandLineParser.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Handlers.Core.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Handlers.Redis.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\StackExchange.Redis.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Newtonsoft.Json.dll
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Handlers.Core.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Monitor.Handlers.Redis.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\FluentCommandLineParser.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\FluentCommandLineParser.xml
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\StackExchange.Redis.pdb
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\StackExchange.Redis.xml
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\bin\Debug\Newtonsoft.Json.xml
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\obj\Debug\Monitor.Agent.Console.exe
+C:\Users\BenMeadors\Source\Monitor\monitor\Monitor.Agent.Console\obj\Debug\Monitor.Agent.Console.pdb
