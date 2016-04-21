@@ -1,5 +1,0 @@
-C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\bin\Host\Monitor.Handlers.Core.dll
-C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\bin\Host\Monitor.Handlers.Core.pdb
-C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\obj\Host\Monitor.Handlers.Core.csprojResolveAssemblyReference.cache
-C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\obj\Host\Monitor.Handlers.Core.dll
-C:\Users\Meadors\Source\Github\monitor\Monitor.Handlers.Core\obj\Host\Monitor.Handlers.Core.pdb

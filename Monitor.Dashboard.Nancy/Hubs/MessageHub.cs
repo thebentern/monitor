@@ -2,12 +2,15 @@
 using Monitor.Core;
 using Monitor.Handlers.Redis;
 using System;
+using System.Configuration;
 
 namespace Monitor.Dashboard.Nancy.Hubs
 {
     public class MessageHub : Hub
     {
-        public ISubscribeToMessages<DefaultMessage> Messages = new RedisMessageSubscriber<DefaultMessage>("10.0.2.2", "Default");
+        public ISubscribeToMessages<DefaultMessage> Messages =
+            new RedisMessageSubscriber<DefaultMessage>(
+                ConfigurationManager.AppSettings["RedisHost"] ?? "localhost", "Default");
         public MessageHub()
         {
               Messages.Subscribe(Broadcast);
