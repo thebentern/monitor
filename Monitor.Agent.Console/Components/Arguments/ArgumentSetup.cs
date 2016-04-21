@@ -18,9 +18,9 @@ namespace Monitor.Agent.Console
             .WithDescription("Channel to publish messages to")
             .SetDefault("Default");
 
-            p.Setup(arg => arg.RedisHost)
-            .As('r', "redishost")
-            .WithDescription("Redis server IP or name")
+            p.Setup(arg => arg.Host)
+            .As('h', "host")
+            .WithDescription("Address of host message consumer")
             .SetDefault("localhost");
 
             p.Setup(arg => arg.Origin)

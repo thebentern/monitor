@@ -10,7 +10,7 @@ namespace Monitor.Agent.Console
     {
         public string Channel { get; set; }
         public string Origin { get; set; }
-        public string RedisHost { get; set; }
+        public string Host { get; set; }
         public string Process { get; set; }
         public bool StdOut { get; set; }
     }

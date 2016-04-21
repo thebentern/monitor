@@ -16,7 +16,7 @@ namespace Monitor.Agent.Console
             var result = parser.Parse(args);
             var agentArgs = parser.Object;
 
-            if ( result.HasErrors == false )
+            if ( result.HasErrors )
                 System.Console.WriteLine( result.ErrorText );
             else
             {
@@ -26,7 +26,7 @@ namespace Monitor.Agent.Console
                 else
                     process = new ProcessMonitor( agentArgs.Process );
 
-                IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.RedisHost, 
+                IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.Host, 
                     agentArgs.Channel, 
                     agentArgs.Origin );
 
