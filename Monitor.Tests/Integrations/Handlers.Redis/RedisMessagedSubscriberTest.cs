@@ -4,6 +4,7 @@ using Monitor.Core;
 using Monitor.Handlers.Redis;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using FluentAssertions;
 
 namespace Monitor.Tests.Integrations.Redis
 {
@@ -13,7 +14,7 @@ namespace Monitor.Tests.Integrations.Redis
         public void Publishes_Message_To_Redis_Instance()
         {
             redisSubscriber.Subscribe(CheckMessage);
-            redisPublisher.Publish(newMessage);
+            redisPublisher.Publish(newMessage).Should().BePositive();
         }
 
         [Test]
@@ -23,6 +24,7 @@ namespace Monitor.Tests.Integrations.Redis
             var result = await redisPublisher.PublishAsync(newMessage);
         }
 
-        private void CheckMessage(IMessage message) => Assert.AreEqual(message.Content, "Derp");
+        private void CheckMessage(IMessage message) 
+            => message.Content.Should().Be("Derp");
     }
 }

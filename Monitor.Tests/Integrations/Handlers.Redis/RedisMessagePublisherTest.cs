@@ -4,6 +4,7 @@ using Monitor.Core;
 using Monitor.Handlers.Redis;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using FluentAssertions;
 
 namespace Monitor.Tests.Integrations.Redis
 {
@@ -13,14 +14,14 @@ namespace Monitor.Tests.Integrations.Redis
         public void Subscriber_Recieves_Message_From_Redis_Instance()
         {
             long result = redisPublisher.Publish(newMessage);
-            Assert.IsNotNull(result);
+            result.Should().BeGreaterOrEqualTo(0);
         }
 
         [Test]
         public async Task Subscriber_Recieves_Asynchronous_Message_From_Redis_Instance()
         {
             long result = await redisPublisher.PublishAsync(newMessage);
-            Assert.IsNotNull(result);
+            result.Should().BeGreaterOrEqualTo(0);
         }
     }
 }

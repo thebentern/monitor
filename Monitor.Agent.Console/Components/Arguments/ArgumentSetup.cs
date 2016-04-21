@@ -36,7 +36,6 @@ namespace Monitor.Agent.Console
             p.Setup(arg => arg.StdOut)
             .As('s', "stdout")
             .WithDescription("Capture StdOut stream piped into agent")
-            .Required()
             .SetDefault(true);
 
             return p;

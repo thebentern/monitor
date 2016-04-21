@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using Monitor.Core;
 
@@ -14,8 +15,8 @@ namespace Monitor.Tests.Units.Core
         {
             DefaultMessage message = new DefaultMessage();
 
-            Assert.AreEqual( message.Channel, DefaultChannel );
-            Assert.AreEqual( message.Origin, DefaultOrigin );
+            message.Channel.ShouldBeEquivalentTo(DefaultChannel);
+            message.Origin.ShouldBeEquivalentTo(DefaultOrigin);
         }
     }
 }

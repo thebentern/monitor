@@ -12,7 +12,6 @@ namespace Monitor.Agent.Console
     {
         public static void Main(string[] args)
         {
-            IMonitor<DefaultMessage> process;
             var parser = ArgumentSetup.Init();
             var result = parser.Parse(args);
             var agentArgs = parser.Object;
@@ -21,6 +20,7 @@ namespace Monitor.Agent.Console
                 System.Console.WriteLine( result.ErrorText );
             else
             {
+                IMonitor<DefaultMessage> process;
                 if ( String.IsNullOrWhiteSpace(agentArgs.Process) )
                     process = new StdOutMonitor();
                 else
