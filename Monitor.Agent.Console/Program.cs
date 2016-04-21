@@ -21,7 +21,7 @@ namespace Monitor.Agent.Console
                 System.Console.WriteLine( result.ErrorText );
             else
             {
-                if ( agentArgs.StdOut )
+                if ( String.IsNullOrWhiteSpace(agentArgs.Process) )
                     process = new StdOutMonitor();
                 else
                     process = new ProcessMonitor( agentArgs.Process );

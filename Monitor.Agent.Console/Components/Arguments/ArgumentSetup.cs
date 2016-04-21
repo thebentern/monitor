@@ -30,13 +30,14 @@ namespace Monitor.Agent.Console
 
             p.Setup(arg => arg.Process)
             .As('p', "process")
-            .WithDescription("Process (and arguments) to host in the agent");
+            .WithDescription("Process (and arguments) to host in the agent")
+            .SetDefault( default(String) );
 
             p.Setup(arg => arg.StdOut)
             .As('s', "stdout")
             .WithDescription("Capture StdOut stream piped into agent")
             .Required()
-            .SetDefault(false);
+            .SetDefault(true);
 
             return p;
         }
