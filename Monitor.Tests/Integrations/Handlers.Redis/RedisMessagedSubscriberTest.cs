@@ -14,7 +14,7 @@ namespace Monitor.Tests.Integrations.Redis
         public void Publishes_Message_To_Redis_Instance()
         {
             redisSubscriber.Subscribe(CheckMessage);
-            redisPublisher.Publish(newMessage).Should().BePositive();
+            redisPublisher.Publish(newMessage).Should().BeGreaterThan(-1);
         }
 
         [Test]
