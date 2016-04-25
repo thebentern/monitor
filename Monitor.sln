@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6E1E50CB-250
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{668397E1-7EDB-4FC4-A027-CB5FF488C8E3}"
 	ProjectSection(SolutionItems) = preProject
+		build.cake = build.cake
 		global.json = global.json
 	EndProjectSection
 EndProject
