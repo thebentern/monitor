@@ -1,7 +1,6 @@
 var target = Argument("target", "Default");
 var solution = "./Monitor.sln";
 var tools = "./tools/Cake/";
-var testPath = "./Monitor.Tests/bin/" + configuration + "/Monitor.Tests.dll";
 var configuration = Argument("configuration", "Debug");
 
 // Define directories.
@@ -48,7 +47,7 @@ Task("Generate-Coverage")
     .Does(() =>
     {
         OpenCover(tool => {
-          tool.NUnit3(testPath, new NUnit3Settings {
+          tool.NUnit3("./Monitor.Tests/bin/" + configuration + "/Monitor.Tests.dll", new NUnit3Settings {
                 ToolPath = tools + "nunit3-console.exe",
                 NoResults = true
               });
