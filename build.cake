@@ -1,6 +1,6 @@
 var target = Argument("target", "Default");
 var solution = "./Monitor.sln";
-var tools = "./tools/Cake/";
+var tools = @"C:\projects\monitor\tools\Cake";//"./tools/Cake/";
 var configuration = Argument("configuration", "Debug");
 
 // Define directories.
