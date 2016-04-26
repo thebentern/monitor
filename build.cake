@@ -57,6 +57,7 @@ Task("Generate-Coverage")
             .WithFilter("+[Monitor.Dashboard.Nancy]*")
             .WithFilter("+[Monitor.Handlers.Core]*")
             .WithFilter("+[Monitor.Handlers.Redis]*")
+            //Exclude tests project
             .WithFilter("-[Monitor.Tests]*")
         );
     });
@@ -66,7 +67,7 @@ Task("Report-Coverage")
     .Does(() =>
     {
           ReportGenerator("./result.xml", "./output", new ReportGeneratorSettings(){
-              //ToolPath = "c:/tools/reportgenerator.exe"
+              ToolPath = "./tools/Cake/reportgenerator.exe"
           });
     });
 
