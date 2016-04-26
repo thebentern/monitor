@@ -9,7 +9,7 @@ install:
 - cmd: redis-64\tools\redis-server.exe --service-install
 - cmd: redis-64\tools\redis-server.exe --service-start
 
-before_build:
-- cmd: regsvr32 /s .\tools\Cake\x86\OpenCover.Profiler.dll
-- cmd: regsvr32 /s .\tools\Cake\x64\OpenCover.Profiler.dll
+# before_build:
+# - cmd: regsvr32 /s .\tools\Cake\x86\OpenCover.Profiler.dll
+# - cmd: regsvr32 /s .\tools\Cake\x64\OpenCover.Profiler.dll
 #/i:user
