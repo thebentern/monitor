@@ -3,9 +3,6 @@ var solution = "./Monitor.sln";
 var tools = "./tools/Cake/";
 var configuration = Argument("configuration", "Debug");
 
-// Define directories.
-var buildDir = Directory("./src/Example/bin") + Directory(configuration);
-
 Task("Clean")
     .Does(() =>
     {
@@ -37,12 +34,6 @@ Task("Build")
         }
     });
 
-/*Task("Run-Unit-Tests")
-    .IsDependentOn("Build")
-    .Does(() =>
-    {
-
-    });*/
 Task("Generate-Coverage")
     .IsDependentOn("Build")
     .Does(() =>
