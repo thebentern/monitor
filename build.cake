@@ -48,12 +48,13 @@ Task("Generate-Coverage")
         OpenCover(tool => {
           var testPath = "./Monitor.Tests/bin/" + configuration + "/Monitor.Tests.dll";;
           tool.NUnit3(testPath, new NUnit3Settings {
-              NoResults = true
+                NoResults = true,
+                ToolPath = "./tools/Cake/nunit3-console.exe"
               });
           },
           new FilePath("./result.xml"),
           new OpenCoverSettings(){
-              ToolPath = "./tools/Cake/OpenCover.Console.exe"            
+              ToolPath = "./tools/Cake/OpenCover.Console.exe"
             }
             .WithFilter("+[Monitor.Agent.Console]*")
             .WithFilter("+[Monitor.Dashboard.Nancy]*")
