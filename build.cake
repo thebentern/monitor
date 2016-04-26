@@ -1,5 +1,6 @@
 var target = Argument("target", "Default");
 var solution = "./Monitor.sln";
+var tools = "./tools/Cake/";
 var configuration = Argument("configuration", "Debug");
 
 // Define directories.
@@ -49,12 +50,12 @@ Task("Generate-Coverage")
           var testPath = "./Monitor.Tests/bin/" + configuration + "/Monitor.Tests.dll";;
           tool.NUnit3(testPath, new NUnit3Settings {
                 NoResults = true,
-                ToolPath = "./tools/Cake/nunit3-console.exe"
+                ToolPath = tools + "nunit3-console.exe"
               });
           },
           new FilePath("./result.xml"),
           new OpenCoverSettings(){
-              ToolPath = "./tools/Cake/OpenCover.Console.exe"
+              ToolPath = tools + "OpenCover.Console.exe"
             }
             .WithFilter("+[Monitor.Agent.Console]*")
             .WithFilter("+[Monitor.Dashboard.Nancy]*")
@@ -69,8 +70,8 @@ Task("Report-Coverage")
     .IsDependentOn("Generate-Coverage")
     .Does(() =>
     {
-          ReportGenerator("./result.xml", "./output", new ReportGeneratorSettings(){
-              ToolPath = "./tools/Cake/reportgenerator.exe"
+          ReportGenerator("./result.xml", "./output", new ReportGeneratorSettings() {
+              ToolPath = tools + "reportgenerator.exe"
           });
     });
 
