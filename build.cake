@@ -55,7 +55,8 @@ Task("Generate-Coverage")
           },
           new FilePath("./result.xml"),
           new OpenCoverSettings(){
-              ToolPath = tools + "OpenCover.Console.exe"
+              ToolPath = tools + "OpenCover.Console.exe",
+              ArgumentCustomization = builder => builder.Append("-register:user")
             }
             .WithFilter("+[Monitor.Agent.Console]*")
             .WithFilter("+[Monitor.Dashboard.Nancy]*")
