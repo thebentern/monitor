@@ -52,7 +52,9 @@ Task("Generate-Coverage")
               });
           },
           new FilePath("./result.xml"),
-          new OpenCoverSettings()
+          new OpenCoverSettings(){
+              ToolPath = "./tools/Cake/OpenCover.Console.exe"            
+            }
             .WithFilter("+[Monitor.Agent.Console]*")
             .WithFilter("+[Monitor.Dashboard.Nancy]*")
             .WithFilter("+[Monitor.Handlers.Core]*")
