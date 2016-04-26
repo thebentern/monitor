@@ -44,6 +44,7 @@ Task("Build")
 
     });*/
 Task("Generate-Coverage")
+    .IsDependentOn("Build")
     .Does(() =>
     {
         OpenCover(tool => {
