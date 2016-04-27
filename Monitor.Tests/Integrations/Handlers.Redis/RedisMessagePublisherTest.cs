@@ -23,5 +23,15 @@ namespace Monitor.Tests.Integrations.Redis
             long result = await redisPublisher.PublishAsync(newMessage);
             result.Should().BeGreaterThan(-1);
         }
+
+        [Test]
+        public void Subscriber_Observes_The_Channel_And_Origin()
+        {
+            var channel = "MyChannel";
+            var origin = "MyOrigin";
+            var publisher = new RedisMessagePublisher<DefaultMessage>("localhost", channel, origin);
+            publisher.Origin.Should().BeEquivalentTo(origin);
+            publisher.Channel.Should().BeEquivalentTo(channel);
+        }
     }
 }
