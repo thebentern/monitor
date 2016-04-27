@@ -29,7 +29,7 @@ namespace Monitor.Agent.Console
                 if (String.IsNullOrWhiteSpace(agentArgs.Process))
                     process = new StdOutMonitor(publisher, System.Console.OpenStandardInput(), System.Console.OpenStandardOutput());
                 else
-                    process = new ProcessMonitor(publisher, agentArgs.Process);
+                    process = new ProcessMonitor(publisher, new Process(agentArgs.Process));
 
                 process.Monitor();
             }
@@ -37,8 +37,7 @@ namespace Monitor.Agent.Console
 
         public static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)
         {
-            var publisher = new RedisMessagePublisher<DefaultMessage>(host, channel, origin);
-            return publisher;
+            return new RedisMessagePublisher<DefaultMessage>(host, channel, origin);
         }
     }
 }

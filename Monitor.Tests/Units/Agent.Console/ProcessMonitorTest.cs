@@ -1,38 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Monitor.Agent.Console;
 using Monitor.Core;
-using Monitor.Tests.Integrations.Redis;
 using NUnit.Framework;
+using Moq;
 
 namespace Monitor.Tests.Units.Agent.Console
 {
     public class ProcessMonitorTest : RedisBaseTest
     {
-        private MemoryStream streamIn;
-        private MemoryStream streamOut;
-
-        private StreamWriter writer;
-
+        public Mock<IProcess> process;
         [SetUp]
-        public void Init_Stream()
+        public void Init_Process()
         {
-            streamIn = new MemoryStream();
-            streamOut = new MemoryStream();
-            writer = new StreamWriter(streamIn);
+            process = new Mock<IProcess>();
         }
-        [TearDown]
-        public void Close_Stream()
+
+        [Test]
+        public void Throw_Exception_When_Publisher_Is_Missing() =>
+            Assert.Throws<ArgumentNullException>(() => new ProcessMonitor(null, process.Object));
+
+        [Test]
+        public void Throw_Exception_When_process_Is_Missing() =>
+            Assert.Throws<ArgumentNullException>(() => new ProcessMonitor(redisPublisher, null));
+
+        [Test]
+        public void Publishes_Message_From_Process()
         {
-            streamIn?.Close();
-            streamOut?.Close();
+            var monitor = new ProcessMonitor(redisPublisher, process.Object);
+            monitor.Monitor();
+            process.Verify(p => p.Execute(
+                    It.IsAny<EventHandler<MessageEventArgs>>()
+                )
+            );
+            redisSubscriber.Subscribe(CheckMessage);
+            process.Raise(p => p.RaiseMessageReceived += null, new MessageEventArgs(
+                new DefaultMessage()
+                {
+                    Content = "Derp"
+                })
+            );
         }
-        
+
         private void CheckMessage(IMessage message)
         {
             message.Content.Should().Be("Derp");

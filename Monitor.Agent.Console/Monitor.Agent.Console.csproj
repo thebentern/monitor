@@ -69,9 +69,12 @@
   <ItemGroup>
     <Compile Include="Components\Arguments\ArgumentSetup.cs" />
     <Compile Include="Components\Arguments\ConsoleAgentArgs.cs" />
+    <Compile Include="Components\Arguments\MessageEventArgs.cs" />
     <Compile Include="Components\Monitors\IMonitor.cs" />
     <Compile Include="Components\Monitors\ProcessMonitor.cs" />
     <Compile Include="Components\Monitors\StdOutMonitor.cs" />
+    <Compile Include="Components\Process\IProcess.cs" />
+    <Compile Include="Components\Process\Process.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

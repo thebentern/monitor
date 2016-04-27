@@ -3,33 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
-    public sealed class ProcessMonitor : IMonitor<DefaultMessage>
+    public class ProcessMonitor : IMonitor<DefaultMessage>
     {
-        private readonly ProcessStartInfo processStartInfo;
+        private readonly IProcess process;
         private readonly IPublishMessages<DefaultMessage> messagePublisher;
 
-        public ProcessMonitor( IPublishMessages<DefaultMessage> publisher, string process )
+        public ProcessMonitor(IPublishMessages<DefaultMessage> publisher, IProcess processInfo)
         {
             if (publisher == null)
                 throw new ArgumentNullException(nameof(publisher));
             
-            if (process == null)
-                throw new ArgumentNullException(nameof(process));
+            if (processInfo == null)
+                throw new ArgumentNullException(nameof(processInfo));
 
             messagePublisher = publisher;
-
-            processStartInfo = new ProcessStartInfo()
-            {
-                CreateNoWindow = true,
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                FileName = process
-            };
+            process = processInfo;
+            process.MessageArgsCreator = CreateMessageArgs;
         }
         public void Monitor()
         {
@@ -40,41 +35,30 @@ namespace Monitor.Agent.Console
             StartProcess(MessageHandlerAsync);
         }
 
-        private void StartProcess(DataReceivedEventHandler messageHandler)
+        private void StartProcess(EventHandler<MessageEventArgs> messageHandler)
         {
-            var process = new Process()
-            {
-                StartInfo = processStartInfo,
-                EnableRaisingEvents = true
-            };
-            process.OutputDataReceived += messageHandler;
-            process.ErrorDataReceived += messageHandler;
-
-            process.Start();
-            process.BeginOutputReadLine();
-            process.WaitForExit();
-            process.CancelOutputRead();
+            process.Execute(messageHandler);
         }
-
-        private void MessageHandler(object sender, DataReceivedEventArgs e)
+        private MessageEventArgs CreateMessageArgs(DataReceivedEventArgs e)
         {
-            var message = new DefaultMessage( messagePublisher.Channel, messagePublisher.Origin )
+            var message = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
             {
                 Content = e.Data
             };
-            messagePublisher.Publish( message );
-            //Should continue output from process (like tee)
-            System.Console.WriteLine( e.Data );
+            return new MessageEventArgs(message);
         }
-        private async void MessageHandlerAsync(object sender, DataReceivedEventArgs e)
+
+        private void MessageHandler(object sender, MessageEventArgs e)
         {
-            var message = new DefaultMessage( messagePublisher.Channel, messagePublisher.Origin )
-            {
-                Content = e.Data
-            };
+            messagePublisher.Publish((DefaultMessage)e.Message);
             //Should continue output from process (like tee)
-            System.Console.WriteLine( e.Data );
-            await messagePublisher.PublishAsync( message );
+            System.Console.WriteLine(e.Message.Content);
+        }
+        private async void MessageHandlerAsync(object sender, MessageEventArgs e)
+        {
+            //Should continue output from process (like tee)
+            System.Console.WriteLine(e.Message.Content);
+            await messagePublisher.PublishAsync((DefaultMessage)e.Message);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    publish.Invoke(Encoding.Default.GetString(buffer));
+                    Publish(Encoding.Default.GetString(buffer));
                     //Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }
