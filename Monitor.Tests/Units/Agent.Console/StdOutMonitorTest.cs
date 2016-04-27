@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Monitor.Agent.Console;
 using Monitor.Core;
+using Monitor.Handlers.Redis;
 using Monitor.Tests.Integrations.Redis;
 using NUnit.Framework;
 
@@ -33,6 +34,19 @@ namespace Monitor.Tests.Units.Agent.Console
             streamOut?.Close();
         }
         //TODO Make these tests actually capture published message and run asserts
+
+        [Test]
+        public void Throw_Exception_When_Publisher_Is_Missing() =>
+            Assert.Throws<ArgumentNullException>(() => new StdOutMonitor(null, streamIn, streamOut));
+
+        [Test]
+        public void Throw_Exception_When_StreamIn_Is_Missing() =>
+            Assert.Throws<ArgumentNullException>(() => new StdOutMonitor(redisPublisher, null, streamOut));
+
+        [Test]
+        public void Throw_Exception_When_StreamOut_Is_Missing() =>
+            Assert.Throws<ArgumentNullException>(() => new StdOutMonitor(redisPublisher, streamIn, null));
+
         [Test]
         public async Task Publishes_Message_From_Stream()
         {
