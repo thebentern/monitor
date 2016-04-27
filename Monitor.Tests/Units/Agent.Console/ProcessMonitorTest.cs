@@ -42,6 +42,24 @@ namespace Monitor.Tests.Units.Agent.Console
             );
         }
 
+        [Test]
+        public void Publishes_Message_Async_From_Process()
+        {
+            var monitor = new ProcessMonitor(redisPublisher, process.Object);
+            monitor.MonitorAsync();
+            process.Verify(p => p.Execute(
+                    It.IsAny<EventHandler<MessageEventArgs>>()
+                )
+            );
+            redisSubscriber.Subscribe(CheckMessage);
+            process.Raise(p => p.RaiseMessageReceived += null, new MessageEventArgs(
+                new DefaultMessage()
+                {
+                    Content = "Derp"
+                })
+            );
+        }
+
         private void CheckMessage(IMessage message)
         {
             message.Content.Should().Be("Derp");
