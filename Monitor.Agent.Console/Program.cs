@@ -21,16 +21,17 @@ namespace Monitor.Agent.Console
             else
             {
                 IMonitor<DefaultMessage> process;
-                if ( String.IsNullOrWhiteSpace(agentArgs.Process) )
-                    process = new StdOutMonitor();
-                else
-                    process = new ProcessMonitor( agentArgs.Process );
-
+                
                 IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.Host, 
                     agentArgs.Channel, 
                     agentArgs.Origin );
 
-                process.Monitor(publisher);
+                if (String.IsNullOrWhiteSpace(agentArgs.Process))
+                    process = new StdOutMonitor(publisher, System.Console.OpenStandardInput(), System.Console.OpenStandardOutput());
+                else
+                    process = new ProcessMonitor(publisher, agentArgs.Process);
+
+                process.Monitor();
             }
         }
 

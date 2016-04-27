@@ -10,32 +10,46 @@ namespace Monitor.Agent.Console
 {
     public sealed class StdOutMonitor : IMonitor<DefaultMessage>
     {
-        private IPublishMessages<DefaultMessage> messagePublisher;
+        private readonly IPublishMessages<DefaultMessage> messagePublisher;
+        public Stream StdOutStream;
+        public Stream StdInStream;
 
-        public StdOutMonitor() { }
 
-        public void Monitor(IPublishMessages<DefaultMessage> publisher)
+        public StdOutMonitor(IPublishMessages<DefaultMessage> publisher, Stream stdInStream, Stream stdOutStream)
         {
+            if (publisher == null)
+                throw new ArgumentNullException(nameof(publisher));
             messagePublisher = publisher;
+
+            if (stdInStream == null)
+                throw new ArgumentNullException(nameof(stdInStream));
+            StdInStream = stdInStream;
+
+            if (stdOutStream == null)
+                throw new ArgumentNullException(nameof(stdOutStream));
+            StdOutStream = stdOutStream;
+        }
+
+        public void Monitor()
+        {
             CaptureStdOut(Publish);
         }
 
-        public void MonitorAsync(IPublishMessages<DefaultMessage> publisher)
+        public void MonitorAsync()
         {
-            messagePublisher = publisher;
             CaptureStdOut(PublishAsync);
         }
 
         private void CaptureStdOut(Action<string> publish)
         {
-            using (Stream stdin = System.Console.OpenStandardInput())
-            using (Stream stdout = System.Console.OpenStandardOutput())
+            using (Stream stdin = StdInStream)
+            using (Stream stdout = StdOutStream)
             {
                 byte[] buffer = new byte[2048];
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    Publish(Encoding.Default.GetString(buffer));
+                    publish.Invoke(Encoding.Default.GetString(buffer));
                     //Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }

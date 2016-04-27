@@ -9,7 +9,7 @@ namespace Monitor.Agent.Console
 {
     public interface IMonitor<T> where T : IMessage
     {
-        void Monitor(IPublishMessages<T> messagePublisher) ;
-        void MonitorAsync(IPublishMessages<T> messagePublisher);
+        void Monitor();
+        void MonitorAsync();
     }
 }

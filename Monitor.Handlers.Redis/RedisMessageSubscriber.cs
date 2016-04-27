@@ -23,8 +23,7 @@ namespace Monitor.Handlers.Redis
         private Action<RedisChannel, RedisValue> CreateMessageHandler( Action<T> action )
         {
             return
-                new Action<RedisChannel, RedisValue>(
-                    (c, m) => action.Invoke(JsonConvert.DeserializeObject<T>(m)));
+                (c, m) => action.Invoke(JsonConvert.DeserializeObject<T>(m));
         }
     }
 }

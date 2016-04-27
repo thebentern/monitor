@@ -3,7 +3,7 @@ using Monitor.Handlers.Redis;
 using NUnit.Framework;
 using System.Configuration;
 
-namespace Monitor.Tests.Integrations.Redis
+namespace Monitor.Tests
 {
     /// <summary>
     /// Base class for Redis tests

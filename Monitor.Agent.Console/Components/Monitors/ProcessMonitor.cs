@@ -11,30 +11,32 @@ namespace Monitor.Agent.Console
     public sealed class ProcessMonitor : IMonitor<DefaultMessage>
     {
         private readonly ProcessStartInfo processStartInfo;
-        private IPublishMessages<DefaultMessage> messagePublisher;
+        private readonly IPublishMessages<DefaultMessage> messagePublisher;
 
-        public ProcessMonitor( string process )
+        public ProcessMonitor( IPublishMessages<DefaultMessage> publisher, string process )
         {
+            if (publisher == null)
+                throw new ArgumentNullException(nameof(publisher));
+            
             if (process == null)
-                throw new ArgumentNullException( nameof(process) );
+                throw new ArgumentNullException(nameof(process));
+
+            messagePublisher = publisher;
 
             processStartInfo = new ProcessStartInfo()
             {
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
-                //Arguments = args,
                 FileName = process
             };
         }
-        public void Monitor( IPublishMessages<DefaultMessage> publisher )
+        public void Monitor()
         {
-            messagePublisher = publisher;
             StartProcess(MessageHandler);
         }
-        public void MonitorAsync( IPublishMessages<DefaultMessage> publisher )
+        public void MonitorAsync()
         {
-            messagePublisher = publisher;
             StartProcess(MessageHandlerAsync);
         }
 
