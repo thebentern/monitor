@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="Shared\RedisBaseTest.cs" />
     <Compile Include="Integrations\Handlers.Redis\RedisMessagedSubscriberTest.cs" />
+    <Compile Include="Units\Agent.Console\MessageEventArgsTest.cs" />
     <Compile Include="Units\Agent.Console\ArgumentSetupTest.cs" />
     <Compile Include="Units\Agent.Console\ProcessMonitorTest.cs" />
     <Compile Include="Units\Agent.Console\StdOutMonitorTest.cs" />

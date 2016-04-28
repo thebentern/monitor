@@ -55,7 +55,6 @@ namespace Monitor.Agent.Console
                 }
             }
         }
-
         private void Publish(string message)
         {
             var defaultMessage = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)

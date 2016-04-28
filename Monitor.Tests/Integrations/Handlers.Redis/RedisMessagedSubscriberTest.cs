@@ -24,7 +24,6 @@ namespace Monitor.Tests.Integrations.Redis
             var result = await redisPublisher.PublishAsync(newMessage);
         }
 
-
         [Test]
         public void Publishes_Observes_The_Channel_And_Origin()
         {
@@ -32,7 +31,7 @@ namespace Monitor.Tests.Integrations.Redis
             var origin = "MyOrigin";
             var subscriber = new RedisMessageSubscriber<DefaultMessage>("localhost", channel);
             var publisher = new RedisMessagePublisher<DefaultMessage>("localhost", channel, origin);
-            subscriber.Subscribe((m) => m.Should().ShouldBeEquivalentTo(channel));
+            subscriber.Subscribe((m) => m.Channel.Should().Be(channel));
             publisher.Publish(new DefaultMessage(channel) {Content = "Derp"});
         }
 

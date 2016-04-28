@@ -39,7 +39,7 @@ namespace Monitor.Agent.Console
         {
             process.Execute(messageHandler);
         }
-        private MessageEventArgs CreateMessageArgs(DataReceivedEventArgs e)
+        public MessageEventArgs CreateMessageArgs(DataReceivedEventArgs e)
         {
             var message = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
             {
@@ -54,6 +54,7 @@ namespace Monitor.Agent.Console
             //Should continue output from process (like tee)
             System.Console.WriteLine(e.Message.Content);
         }
+
         private async void MessageHandlerAsync(object sender, MessageEventArgs e)
         {
             //Should continue output from process (like tee)

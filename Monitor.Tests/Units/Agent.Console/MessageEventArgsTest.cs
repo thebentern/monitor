@@ -10,6 +10,6 @@ namespace Monitor.Tests.Units.Agent.Console
     {
         [Test]
         public void Throw_Exception_When_Message_Is_Missing() =>
-           Assert.Throws<ArgumentNullException>(() => new MessageEventArgs(null));
+           Assert.Throws<ArgumentNullException>(() => new MessageEventArgs(message: null));
     }
 }

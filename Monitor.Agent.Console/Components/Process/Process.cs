@@ -35,8 +35,10 @@ namespace Monitor.Agent.Console
                 EnableRaisingEvents = true
             };
             RaiseMessageReceived += handler;
-            process.OutputDataReceived += (s, e) => RaiseMessageReceived(s, MessageArgsCreator.Invoke(e));
-            process.ErrorDataReceived += (s, e) => RaiseMessageReceived(s, MessageArgsCreator.Invoke(e));
+            process.OutputDataReceived += 
+                (s, e) => OnRaiseMessageReceivedEvent(MessageArgsCreator.Invoke(e));
+            process.ErrorDataReceived += 
+                (s, e) => OnRaiseMessageReceivedEvent(MessageArgsCreator.Invoke(e));
 
             process.Start();
             process.BeginOutputReadLine();
