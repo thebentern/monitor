@@ -10,29 +10,32 @@ namespace Monitor.Agent.Console
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var parser = ArgumentSetup.Init();
             var result = parser.Parse(args);
             var agentArgs = parser.Object;
 
-            if ( result.HasErrors )
-                System.Console.WriteLine( result.ErrorText );
-            else
+            if (result.HasErrors)
             {
-                IMonitor<DefaultMessage> process;
-                
-                IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.Host, 
-                    agentArgs.Channel, 
-                    agentArgs.Origin );
-
-                if (String.IsNullOrWhiteSpace(agentArgs.Process))
-                    process = new StdOutMonitor(publisher, System.Console.OpenStandardInput(), System.Console.OpenStandardOutput());
-                else
-                    process = new ProcessMonitor(publisher, new Process(agentArgs.Process));
-
-                process.Monitor();
+                System.Console.WriteLine(result.ErrorText);
+                return 1;
             }
+
+            IMonitor<DefaultMessage> process;
+                
+            IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.Host, 
+                agentArgs.Channel, 
+                agentArgs.Origin );
+
+            if (String.IsNullOrWhiteSpace(agentArgs.Process))
+                process = new StdOutMonitor(publisher, System.Console.OpenStandardInput(), System.Console.OpenStandardOutput());
+            else
+                process = new ProcessMonitor(publisher, new Process(agentArgs.Process));
+
+            process.Monitor();
+            
+            return 0;
         }
 
         private static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)

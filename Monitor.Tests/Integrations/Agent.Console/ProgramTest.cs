@@ -19,7 +19,15 @@ namespace Monitor.Tests.Units.Agent.Console
         public void Publishes_Message_From_Process()
         {
             redisSubscriber.Subscribe(CheckMessage);
-            Program.Main(new []{ "-p", "ipconfig" });
+            int result = Program.Main(new []{ "-p", "ipconfig" });
+            result.Should().Be(0);
+        }
+
+        [Test]
+        public void Returns_Error_Code_For_Invalid_Args()
+        {
+            int result = Program.Main(new[] { "-s", "bob" });
+            result.Should().Be(1);
         }
 
         [Test]
