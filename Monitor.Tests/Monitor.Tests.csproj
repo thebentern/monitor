@@ -105,10 +105,11 @@
   <ItemGroup>
     <Compile Include="Shared\RedisBaseTest.cs" />
     <Compile Include="Integrations\Handlers.Redis\RedisMessagedSubscriberTest.cs" />
+    <Compile Include="Units\Agent.Console\ProcessTest.cs" />
     <Compile Include="Units\Agent.Console\MessageEventArgsTest.cs" />
     <Compile Include="Units\Agent.Console\ArgumentSetupTest.cs" />
-    <Compile Include="Units\Agent.Console\ProcessMonitorTest.cs" />
-    <Compile Include="Units\Agent.Console\StdOutMonitorTest.cs" />
+    <Compile Include="Integrations\Agent.Console\ProcessMonitorTest.cs" />
+    <Compile Include="Integrations\Agent.Console\StdOutMonitorTest.cs" />
     <Compile Include="Units\Core\DefaultMessageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Integrations\Handlers.Redis\RedisMessagePublisherTest.cs" />
@@ -128,7 +129,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Integrations\Agent.Console\" />
     <Folder Include="Units\Handlers.Redis\" />
   </ItemGroup>
   <ItemGroup>

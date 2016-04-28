@@ -10,7 +10,7 @@ namespace Monitor.Agent.Console
         private readonly ProcessStartInfo processStartInfo;
         public Process(string process)
         {
-            if(process == null)
+            if(String.IsNullOrWhiteSpace(process))
                 throw new ArgumentNullException(nameof(process));
 
             processStartInfo = new ProcessStartInfo()

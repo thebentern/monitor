@@ -32,16 +32,6 @@ namespace Monitor.Agent.Console
 
         public void Monitor()
         {
-            CaptureStdOut(Publish);
-        }
-
-        public void MonitorAsync()
-        {
-            CaptureStdOut(PublishAsync);
-        }
-
-        private void CaptureStdOut(Action<string> publish)
-        {
             using (Stream stdin = StdInStream)
             using (Stream stdout = StdOutStream)
             {
@@ -55,6 +45,23 @@ namespace Monitor.Agent.Console
                 }
             }
         }
+
+        public void MonitorAsync()
+        {
+            using (Stream stdin = StdInStream)
+            using (Stream stdout = StdOutStream)
+            {
+                byte[] buffer = new byte[2048];
+                int bytes;
+                while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    PublishAsync(Encoding.Default.GetString(buffer));
+                    //Should continue output from process (like tee)
+                    stdout.Write(buffer, 0, bytes);
+                }
+            }
+        }
+
         private void Publish(string message)
         {
             var defaultMessage = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)

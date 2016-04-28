@@ -35,7 +35,7 @@ namespace Monitor.Agent.Console
             }
         }
 
-        public static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)
+        private static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)
         {
             return new RedisMessagePublisher<DefaultMessage>(host, channel, origin);
         }
