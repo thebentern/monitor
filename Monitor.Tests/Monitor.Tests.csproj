@@ -103,6 +103,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Integrations\Agent.Console\ProgramTest.cs" />
     <Compile Include="Shared\RedisBaseTest.cs" />
     <Compile Include="Integrations\Handlers.Redis\RedisMessagedSubscriberTest.cs" />
     <Compile Include="Units\Agent.Console\ProcessTest.cs" />
