@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Monitor.Agent.Console;
 using Monitor.Core;
-using Monitor.Handlers.Redis;
-using Monitor.Tests.Integrations.Redis;
+using Monitor.Tests;
 using NUnit.Framework;
 
 namespace Monitor.Tests.Units.Agent.Console
@@ -18,7 +15,7 @@ namespace Monitor.Tests.Units.Agent.Console
         private MemoryStream streamIn;
         private MemoryStream streamOut;
 
-        private readonly string testMessage = Repeat("derp", 100);
+        private readonly string testMessage = TestHelpers.Repeat("derp", 100);
 
         [SetUp]
         public void Init_Stream()
@@ -63,11 +60,6 @@ namespace Monitor.Tests.Units.Agent.Console
             await redisSubscriber.SubscribeAsync(CheckMessage);
             var monitor = new StdOutMonitor(redisPublisher, streamIn, streamOut);
             monitor.MonitorAsync();
-        }
-
-        private static string Repeat(string value, int count)
-        {
-            return new StringBuilder(value.Length * count).Insert(0, value, count).ToString();
         }
 
         private void CheckMessage(IMessage message)

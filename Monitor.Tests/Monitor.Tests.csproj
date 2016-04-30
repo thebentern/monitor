@@ -106,6 +106,7 @@
     <Compile Include="Integrations\Agent.Console\ProgramTest.cs" />
     <Compile Include="Shared\RedisBaseTest.cs" />
     <Compile Include="Integrations\Handlers.Redis\RedisMessagedSubscriberTest.cs" />
+    <Compile Include="Shared\TestHelpers.cs" />
     <Compile Include="Units\Agent.Console\ProcessTest.cs" />
     <Compile Include="Units\Agent.Console\MessageEventArgsTest.cs" />
     <Compile Include="Units\Agent.Console\ArgumentSetupTest.cs" />

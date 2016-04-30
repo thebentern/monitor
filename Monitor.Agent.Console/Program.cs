@@ -2,6 +2,7 @@
 using Monitor.Handlers.Redis;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,8 @@ namespace Monitor.Agent.Console
 
             IMonitor<DefaultMessage> process;
                 
-            IPublishMessages<DefaultMessage> publisher = CreateRedisPublisher( agentArgs.Host, 
-                agentArgs.Channel, 
-                agentArgs.Origin );
+            IPublishMessages<DefaultMessage> publisher = 
+                CreateRedisPublisher(agentArgs.Host, agentArgs.Channel, agentArgs.Origin);
 
             if (String.IsNullOrWhiteSpace(agentArgs.Process))
                 process = new StdOutMonitor(publisher, System.Console.OpenStandardInput(), System.Console.OpenStandardOutput());

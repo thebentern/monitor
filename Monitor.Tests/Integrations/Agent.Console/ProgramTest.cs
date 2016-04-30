@@ -1,20 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using FluentAssertions;
+using FluentAssertions.Common;
 using Monitor.Agent.Console;
 using Monitor.Core;
-using Monitor.Handlers.Redis;
-using Monitor.Tests.Integrations.Redis;
+using Monitor.Tests;
 using NUnit.Framework;
+using Process = Monitor.Agent.Console.Process;
 
 namespace Monitor.Tests.Units.Agent.Console
 {
     public class ProgramTest : RedisBaseTest
-    {   
+    {
+        private MemoryStream streamIn;
+
+        private readonly string testMessage = TestHelpers.Repeat("derp", 100);
+
+        [SetUp]
+        public void Init_Stream()
+        {
+            streamIn = new MemoryStream();
+            var bytes = Encoding.Default.GetBytes(testMessage);
+            streamIn.Write(bytes, 0, bytes.Length);
+            streamIn.Flush();
+            streamIn.Position = 0;
+        }
+        [TearDown]
+        public void Close_Stream()
+        {
+            streamIn?.Close();
+        }
+
         [Test]
         public void Publishes_Message_From_Process()
         {
@@ -33,12 +53,19 @@ namespace Monitor.Tests.Units.Agent.Console
         [Test]
         public void Publishes_Message_From_StdIn()
         {
-            //TODO
+            redisSubscriber.Subscribe(CheckMessage);
+            var process = new Process(
+                    Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Monitor.Agent.Console.exe")
+                );
+            process.Execute(() =>
+            {
+                process.StdIn.WriteLine(testMessage);
+            });
         }
 
         private void CheckMessage(IMessage message)
         {
-            message.Content.Should().NotBeNull();
+            message.Content.Should().Contain("derp");
         }
     }
 }
