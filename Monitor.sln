@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Handlers.Redis", "Monitor.Handlers.Redis\Monitor.Handlers.Redis.csproj", "{F79CDA1B-548E-415E-A020-12CA8BE503FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Handlers.Core", "Monitor.Handlers.Core\Monitor.Handlers.Core.csproj", "{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Core", "Monitor.Handlers.Core\Monitor.Core.csproj", "{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Tests", "Monitor.Tests\Monitor.Tests.csproj", "{714C53BF-EECB-42D0-9F6D-DA45603D4783}"
 EndProject

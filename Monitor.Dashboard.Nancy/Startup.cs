@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Owin;
+﻿using Owin;
 using Microsoft.AspNet.SignalR;
-using Microsoft.Owin.Cors;
 
 namespace Monitor.Dashboard.Nancy
 {
+    /// <summary>
+    /// Bootstrapper for the web application startup
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Configuration of the the specified application.
+        /// </summary>
+        /// <param name="app">The application.</param>
         public void Configuration(IAppBuilder app)
         {
             app

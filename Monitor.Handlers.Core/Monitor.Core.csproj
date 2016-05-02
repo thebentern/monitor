@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{008D6539-DCF7-484B-801F-AD7884FDB868}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Monitor.Agent.Console</RootNamespace>
-    <AssemblyName>Monitor.Agent.Console</AssemblyName>
+    <RootNamespace>Monitor.Core</RootNamespace>
+    <AssemblyName>Monitor.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,7 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Process|AnyCPU' ">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Host|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Host\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -40,7 +37,6 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'StdOut|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -50,13 +46,8 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentCommandLineParser, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,30 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\Arguments\ArgumentSetup.cs" />
-    <Compile Include="Components\Arguments\ConsoleAgentArgs.cs" />
-    <Compile Include="Components\Arguments\MessageEventArgs.cs" />
-    <Compile Include="Components\Monitors\IMonitor.cs" />
-    <Compile Include="Components\Monitors\ProcessMonitor.cs" />
-    <Compile Include="Components\Monitors\StdOutMonitor.cs" />
-    <Compile Include="Components\Process\IProcess.cs" />
-    <Compile Include="Components\Process\Process.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DefaultMessage.cs" />
+    <Compile Include="ISubscribeToMessages.cs" />
+    <Compile Include="IPublishMessages.cs" />
+    <Compile Include="IMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Core.csproj">
-      <Project>{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}</Project>
-      <Name>Monitor.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Monitor.Handlers.Redis\Monitor.Handlers.Redis.csproj">
-      <Project>{F79CDA1B-548E-415E-A020-12CA8BE503FD}</Project>
-      <Name>Monitor.Handlers.Redis</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

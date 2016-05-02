@@ -121,9 +121,9 @@
       <Project>{008D6539-DCF7-484B-801F-AD7884FDB868}</Project>
       <Name>Monitor.Agent.Console</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Handlers.Core.csproj">
+    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Core.csproj">
       <Project>{0cdf7098-d934-46d1-94df-2a2cead04a50}</Project>
-      <Name>Monitor.Handlers.Core</Name>
+      <Name>Monitor.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Monitor.Handlers.Redis\Monitor.Handlers.Redis.csproj">
       <Project>{f79cda1b-548e-415e-a020-12ca8be503fd}</Project>

@@ -73,9 +73,9 @@
     <Compile Include="RedisSubscription.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Handlers.Core.csproj">
+    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Core.csproj">
       <Project>{0cdf7098-d934-46d1-94df-2a2cead04a50}</Project>
-      <Name>Monitor.Handlers.Core</Name>
+      <Name>Monitor.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

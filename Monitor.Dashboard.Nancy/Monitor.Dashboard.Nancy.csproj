@@ -146,9 +146,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Handlers.Core.csproj">
+    <ProjectReference Include="..\Monitor.Handlers.Core\Monitor.Core.csproj">
       <Project>{0CDF7098-D934-46D1-94DF-2A2CEAD04A50}</Project>
-      <Name>Monitor.Handlers.Core</Name>
+      <Name>Monitor.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Monitor.Handlers.Redis\Monitor.Handlers.Redis.csproj">
       <Project>{F79CDA1B-548E-415E-A020-12CA8BE503FD}</Project>

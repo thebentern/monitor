@@ -13,7 +13,10 @@ namespace Monitor.Agent.Console
         /// Entry point for Console Agent
         /// </summary>
         /// <param name="args">The application arguments.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// 0 for successful execution
+        /// 1 for argument errors
+        /// </returns>
         public static int Main(string[] args)
         {
             var parser = ArgumentSetup.Init();
@@ -47,7 +50,9 @@ namespace Monitor.Agent.Console
         /// <param name="host">The specified host.</param>
         /// <param name="channel">The specified channel.</param>
         /// <param name="origin">The specified origin.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// An instance of IPublishMessages<see cref="DefaultMessage"/>
+        /// </returns>
         private static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)
         {
             return new RedisMessagePublisher<DefaultMessage>(host, channel, origin);

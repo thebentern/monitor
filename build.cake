@@ -51,7 +51,7 @@ Task("Generate-Coverage")
             }
             .WithFilter("+[Monitor.Agent.Console]*")
             .WithFilter("+[Monitor.Dashboard.Nancy]*")
-            .WithFilter("+[Monitor.Handlers.Core]*")
+            .WithFilter("+[Monitor.Core]*")
             .WithFilter("+[Monitor.Handlers.Redis]*")
             //Exclude tests project
             .WithFilter("-[Monitor.Tests]*")

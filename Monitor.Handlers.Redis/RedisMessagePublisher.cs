@@ -1,31 +1,53 @@
-﻿using System;
-using Newtonsoft.Json;
-using StackExchange.Redis;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Monitor.Core;
 
 namespace Monitor.Handlers.Redis
 {
-    public class RedisMessagePublisher<T> : RedisSubscription, IPublishMessages<T> where T : IMessage
+    /// <summary>
+    /// Redis implementation of message publisher
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public sealed class RedisMessagePublisher<T> : RedisSubscription, IPublishMessages<T> where T : IMessage
     {
-        public RedisMessagePublisher( string host, string channel, string origin = null ) : base(host, channel)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RedisMessagePublisher{T}"/> class.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="channel">The channel.</param>
+        /// <param name="origin">The origin.</param>
+        public RedisMessagePublisher(string host, string channel, string origin = null) : base(host, channel)
         {
             if (origin != null)
                 Origin = origin;
         }
 
+        /// <summary>
+        /// Gets the message subscription Origin.
+        /// </summary>
+        /// <value>
+        /// The origin.
+        /// </value>
         public string Origin { get; } = "Default";
 
-        public long Publish( T message )
+        /// <summary>
+        /// Publishes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public long Publish(T message)
         {
-            return subscriber.Publish( redisChannel, JsonConvert.SerializeObject(message) );
+            return Subscriber.Publish(RedisChannel, JsonConvert.SerializeObject(message));
         }
 
-        public async Task<long> PublishAsync( T message )
+        /// <summary>
+        /// Publishes the message asynchronously.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public async Task<long> PublishAsync(T message)
         {
-            return await subscriber.PublishAsync( redisChannel, JsonConvert.SerializeObject(message) );
+            return await Subscriber.PublishAsync(RedisChannel, JsonConvert.SerializeObject(message));
         }
     }
 }
