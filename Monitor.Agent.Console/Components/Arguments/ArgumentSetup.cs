@@ -7,38 +7,47 @@ using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
+    /// <summary>
+    /// Console Agent Argument Parsing
+    /// </summary>
     public static class ArgumentSetup
     {
+        /// <summary>
+        /// Initializes and creates parser for Console Agent
+        /// </summary>
+        /// <returns>
+        /// Command line arguments parser
+        /// </returns>
         public static FluentCommandLineParser<ConsoleAgentArgs> Init()
         {
-            var p = new FluentCommandLineParser<ConsoleAgentArgs>();
-            // specify which property the value will be assigned too.
-            p.Setup(arg => arg.Channel)
+            var parser = new FluentCommandLineParser<ConsoleAgentArgs>();
+
+            parser.Setup(arg => arg.Channel)
             .As('c', "channel")
             .WithDescription("Channel to publish messages to")
             .SetDefault("Default");
 
-            p.Setup(arg => arg.Host)
+            parser.Setup(arg => arg.Host)
             .As('h', "host")
             .WithDescription("Address of host message consumer")
             .SetDefault("localhost");
 
-            p.Setup(arg => arg.Origin)
+            parser.Setup(arg => arg.Origin)
             .As('o', "origin")
             .WithDescription("Origin (server or instance) of messages being published")
             .SetDefault("Default");
 
-            p.Setup(arg => arg.Process)
+            parser.Setup(arg => arg.Process)
             .As('p', "process")
             .WithDescription("Process (and arguments) to host in the agent")
             .SetDefault( default(String) );
 
-            p.Setup(arg => arg.StdOut)
+            parser.Setup(arg => arg.StdOut)
             .As('s', "stdout")
             .WithDescription("Capture StdOut stream piped into agent")
             .SetDefault(true);
 
-            return p;
+            return parser;
         }
    }
 }

@@ -1,16 +1,17 @@
 ﻿using Monitor.Core;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
+    /// <summary>
+    /// Monitor for StdIn stream of messages piped into the Console Agent
+    /// </summary>
     public sealed class StdOutMonitor : IMonitor<DefaultMessage>
     {
-        private readonly IPublishMessages<DefaultMessage> messagePublisher;
+        private readonly IPublishMessages<DefaultMessage> _messagePublisher;
+
         public Stream StdOutStream;
         public Stream StdInStream;
 
@@ -19,7 +20,7 @@ namespace Monitor.Agent.Console
         {
             if (publisher == null)
                 throw new ArgumentNullException(nameof(publisher));
-            messagePublisher = publisher;
+            _messagePublisher = publisher;
 
             if (stdInStream == null)
                 throw new ArgumentNullException(nameof(stdInStream));
@@ -30,6 +31,9 @@ namespace Monitor.Agent.Console
             StdOutStream = stdOutStream;
         }
 
+        /// <summary>
+        /// Monitors this instance of the StdIn stream of messages coming into the Console Agent
+        /// </summary>
         public void Monitor()
         {
             using (Stream stdin = StdInStream)
@@ -39,14 +43,17 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    Publish(Encoding.Default.GetString(buffer));
+                    _messagePublisher.Publish(CreateDefaultMessage(Encoding.Default.GetString(buffer)));
                     //Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }
             }
         }
 
-        public void MonitorAsync()
+        /// <summary>
+        /// Asynchronously monitors the StdIn stream of messages coming into the Console Agent
+        /// </summary>
+        public async void MonitorAsync()
         {
             using (Stream stdin = StdInStream)
             using (Stream stdout = StdOutStream)
@@ -55,29 +62,24 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    PublishAsync(Encoding.Default.GetString(buffer));
+                    await _messagePublisher.PublishAsync(CreateDefaultMessage(Encoding.Default.GetString(buffer)));
                     //Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }
             }
         }
 
-        private void Publish(string message)
+        /// <summary>
+        /// Creates a DefaultMessage with the specified content
+        /// </summary>
+        /// <param name="messageContent">Content of the message.</param>
+        /// <returns></returns>
+        private DefaultMessage CreateDefaultMessage(string messageContent)
         {
-            var defaultMessage = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
+            return new DefaultMessage(_messagePublisher.Channel, _messagePublisher.Origin)
             {
-                Content = message
+                Content = messageContent
             };
-            messagePublisher.Publish(defaultMessage);
-        }
-
-        private async void PublishAsync(string message)
-        {
-            var defaultMessage = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
-            {
-                Content = message
-            };
-            await messagePublisher.PublishAsync(defaultMessage);
         } 
    }
 }

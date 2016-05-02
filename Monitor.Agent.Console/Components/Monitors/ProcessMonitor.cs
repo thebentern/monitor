@@ -1,19 +1,24 @@
 ﻿using Monitor.Core;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
+    /// <summary>
+    /// Monitor for a process to be hosted in the Console Agent
+    /// </summary>
     public class ProcessMonitor : IMonitor<DefaultMessage>
     {
-        private readonly IProcess process;
-        private readonly IPublishMessages<DefaultMessage> messagePublisher;
+        private readonly IProcess _process;
+        private readonly IPublishMessages<DefaultMessage> _messagePublisher;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessMonitor"/> class.
+        /// </summary>
+        /// <param name="publisher">The publisher.</param>
+        /// <param name="processInfo">The process information.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// </exception>
         public ProcessMonitor(IPublishMessages<DefaultMessage> publisher, IProcess processInfo)
         {
             if (publisher == null)
@@ -22,44 +27,72 @@ namespace Monitor.Agent.Console
             if (processInfo == null)
                 throw new ArgumentNullException(nameof(processInfo));
 
-            messagePublisher = publisher;
-            process = processInfo;
-            process.MessageArgsCreator = CreateMessageArgs;
+            _messagePublisher = publisher;
+            _process = processInfo;
+            _process.MessageArgsCreator = CreateMessageArgs;
         }
+
+        /// <summary>
+        /// Monitors this instance of the process for messages
+        /// </summary>
         public void Monitor()
         {
             StartProcess(MessageHandler);
         }
+
+        /// <summary>
+        /// Asynchronously monitors this instance of the process for messages
+        /// </summary>
         public void MonitorAsync()
         {
             StartProcess(MessageHandlerAsync);
         }
 
+        /// <summary>
+        /// Starts the process.
+        /// </summary>
+        /// <param name="messageHandler">The message handler.</param>
         private void StartProcess(EventHandler<MessageEventArgs> messageHandler)
         {
-            process.Execute(messageHandler);
+            _process.Execute(messageHandler);
         }
-        public MessageEventArgs CreateMessageArgs(DataReceivedEventArgs e)
+
+        /// <summary>
+        /// Creates the message arguments from DataReceivedEventArgs.
+        /// </summary>
+        /// <param name="e">The <see cref="DataReceivedEventArgs"/> instance containing the event data.</param>
+        /// <returns></returns>
+        private MessageEventArgs CreateMessageArgs(DataReceivedEventArgs e)
         {
-            var message = new DefaultMessage(messagePublisher.Channel, messagePublisher.Origin)
+            var message = new DefaultMessage(_messagePublisher.Channel, _messagePublisher.Origin)
             {
                 Content = e.Data
             };
             return new MessageEventArgs(message);
         }
 
+        /// <summary>
+        /// Handles the Message raised event
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MessageEventArgs"/> instance containing the event data.</param>
         private void MessageHandler(object sender, MessageEventArgs e)
         {
-            messagePublisher.Publish((DefaultMessage)e.Message);
+            _messagePublisher.Publish((DefaultMessage)e.Message);
             //Should continue output from process (like tee)
             System.Console.WriteLine(e.Message.Content);
         }
 
+        /// <summary>
+        /// Handles the Message raised event asynchronously
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MessageEventArgs"/> instance containing the event data.</param>
         private async void MessageHandlerAsync(object sender, MessageEventArgs e)
         {
             //Should continue output from process (like tee)
             System.Console.WriteLine(e.Message.Content);
-            await messagePublisher.PublishAsync((DefaultMessage)e.Message);
+            await _messagePublisher.PublishAsync((DefaultMessage)e.Message);
         }
     }
 }

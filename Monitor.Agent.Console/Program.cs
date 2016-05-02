@@ -1,16 +1,19 @@
 ﻿using Monitor.Core;
 using Monitor.Handlers.Redis;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Monitor.Agent.Console
 {
+    /// <summary>
+    /// Monitor Console Agent
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Entry point for Console Agent
+        /// </summary>
+        /// <param name="args">The application arguments.</param>
+        /// <returns></returns>
         public static int Main(string[] args)
         {
             var parser = ArgumentSetup.Init();
@@ -38,6 +41,13 @@ namespace Monitor.Agent.Console
             return 0;
         }
 
+        /// <summary>
+        /// Creates a redis publisher.
+        /// </summary>
+        /// <param name="host">The specified host.</param>
+        /// <param name="channel">The specified channel.</param>
+        /// <param name="origin">The specified origin.</param>
+        /// <returns></returns>
         private static IPublishMessages<DefaultMessage> CreateRedisPublisher(string host, string channel, string origin)
         {
             return new RedisMessagePublisher<DefaultMessage>(host, channel, origin);
