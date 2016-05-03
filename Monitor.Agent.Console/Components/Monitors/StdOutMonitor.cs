@@ -43,7 +43,7 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    _messagePublisher.Publish(CreateDefaultMessage(Encoding.Default.GetString(buffer)));
+                    _messagePublisher.Publish(CreateDefaultMessage(Encoding.GetEncoding(0).GetString(buffer)));
                     //Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }
@@ -62,7 +62,7 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    await _messagePublisher.PublishAsync(CreateDefaultMessage(Encoding.Default.GetString(buffer)));
+                    await _messagePublisher.PublishAsync(CreateDefaultMessage(Encoding.GetEncoding(0).GetString(buffer)));
                     //Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }

@@ -24,7 +24,7 @@ namespace Monitor.Tests.Units.Agent.Console
         public void Init_Stream()
         {
             streamIn = new MemoryStream();
-            var bytes = Encoding.Default.GetBytes(testMessage);
+            var bytes = Encoding.GetEncoding(0).GetBytes(testMessage);
             streamIn.Write(bytes, 0, bytes.Length);
             streamIn.Flush();
             streamIn.Position = 0;

@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		appveyor.yml = appveyor.yml
 		build.cake = build.cake
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Handlers.Redis", "Monitor.Handlers.Redis\Monitor.Handlers.Redis.csproj", "{F79CDA1B-548E-415E-A020-12CA8BE503FD}"
