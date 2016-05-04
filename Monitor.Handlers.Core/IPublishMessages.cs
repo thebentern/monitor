@@ -5,7 +5,7 @@ namespace Monitor.Core
     /// <summary>
     /// Interface for publishing messages
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Message type</typeparam>
     public interface IPublishMessages<T> where T : IMessage
     {
         /// <summary>
@@ -15,6 +15,7 @@ namespace Monitor.Core
         /// The channel.
         /// </value>
         string Channel { get; }
+
         /// <summary>
         /// Gets the message subscription Origin.
         /// </summary>
@@ -27,14 +28,14 @@ namespace Monitor.Core
         /// Publishes the specified Message.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// <returns></returns>
+        /// <returns>Long output</returns>
         long Publish(T message);
 
         /// <summary>
         /// Publishes the specified Message asynchronously.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// <returns></returns>
+        /// <returns>Task long</returns>
         Task<long> PublishAsync(T message);
     }
 }

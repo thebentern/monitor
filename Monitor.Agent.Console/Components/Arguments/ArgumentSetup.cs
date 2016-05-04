@@ -1,9 +1,6 @@
-﻿using Fclp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+
+using Fclp;
 
 namespace Monitor.Agent.Console
 {
@@ -40,7 +37,7 @@ namespace Monitor.Agent.Console
             parser.Setup(arg => arg.Process)
             .As('p', "process")
             .WithDescription("Process (and arguments) to host in the agent")
-            .SetDefault( default(String) );
+            .SetDefault(default(string));
 
             parser.Setup(arg => arg.StdOut)
             .As('s', "stdout")

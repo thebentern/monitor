@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using System.Configuration;
+
+using Microsoft.AspNet.SignalR;
+
 using Monitor.Core;
 using Monitor.Handlers.Redis;
-using System.Configuration;
 
 namespace Monitor.Dashboard.Nancy.Hubs
 {
@@ -10,10 +12,7 @@ namespace Monitor.Dashboard.Nancy.Hubs
     /// </summary>
     public class MessageHub : Hub
     {
-        /// <summary>
-        /// The Message subscription
-        /// </summary>
-        public ISubscribeToMessages<DefaultMessage> Messages =
+        private readonly ISubscribeToMessages<DefaultMessage> messages =
             new RedisMessageSubscriber<DefaultMessage>(
                 ConfigurationManager.AppSettings["RedisHost"] ?? "localhost", "Default");
 
@@ -22,8 +21,9 @@ namespace Monitor.Dashboard.Nancy.Hubs
         /// </summary>
         public MessageHub()
         {
-            Messages.Subscribe(Broadcast);
+            this.messages.Subscribe(this.Broadcast);
         }
+
         /// <summary>
         /// Broadcasts the specified message to all subscribed clients.
         /// </summary>
@@ -31,7 +31,8 @@ namespace Monitor.Dashboard.Nancy.Hubs
         private void Broadcast(IMessage message)
         {
             Clients.All.publishMesage(message.Channel, message.Content);
+
+            // Console.WriteLine($"Broadcasting on channel '{m.Channel}': {m.Content}"); //For debugging
         }
-        //Console.WriteLine($"Broadcasting on channel '{m.Channel}': {m.Content}");
     }
 }

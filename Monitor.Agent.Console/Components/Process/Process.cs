@@ -5,18 +5,40 @@ using System.Threading;
 
 namespace Monitor.Agent.Console
 {
+    /// <summary>
+    /// Container class for executing a process using System.Diagnostics namespace
+    /// </summary>
     public class Process : IProcess
     {
-        public Func<DataReceivedEventArgs, MessageEventArgs> MessageArgsCreator { get; set; }
-
-        public TextWriter StdIn => process.StandardInput;
-
         private System.Diagnostics.Process process;
 
         private readonly ProcessStartInfo processStartInfo;
+        /// <summary>
+        /// Gets or sets the message arguments creator.
+        /// </summary>
+        /// <value>
+        /// The message arguments creator.
+        /// </value>
+        public Func<DataReceivedEventArgs, MessageEventArgs> MessageArgsCreator { get; set; }
+
+        /// <summary>
+        /// Gets or sets the standard in text writer.
+        /// </summary>
+        /// <value>
+        /// The standard in.
+        /// </value>
+        /// <remarks>
+        /// This is currently used for testing purposes
+        /// </remarks>
+        public TextWriter StdIn => process.StandardInput;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Process" /> class.
+        /// </summary>
+        /// <param name="process">The process.</param>
         public Process(string process)
         {
-            if(String.IsNullOrWhiteSpace(process))
+            if (String.IsNullOrWhiteSpace(process))
                 throw new ArgumentNullException(nameof(process));
 
             processStartInfo = new ProcessStartInfo()
@@ -27,12 +49,26 @@ namespace Monitor.Agent.Console
                 FileName = process
             };
         }
+
+        /// <summary>
+        /// Raises the <see cref="E:RaiseMessageReceivedEvent" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="Monitor.Agent.Console.MessageEventArgs" /> instance containing the event data.</param>
         protected virtual void OnRaiseMessageReceivedEvent(MessageEventArgs e)
         {
             EventHandler<MessageEventArgs> handler = RaiseMessageReceived;
             handler?.Invoke(this, e);
         }
+
+        /// <summary>
+        /// Occurs when Message is received
+        /// </summary>
         public event EventHandler<MessageEventArgs> RaiseMessageReceived;
+
+        /// <summary>
+        /// Executes the specified handler.
+        /// </summary>
+        /// <param name="handler">The handler.</param>
         public void Execute(EventHandler<MessageEventArgs> handler)
         {
             process = new System.Diagnostics.Process()
@@ -41,9 +77,9 @@ namespace Monitor.Agent.Console
                 EnableRaisingEvents = true
             };
             RaiseMessageReceived += handler;
-            process.OutputDataReceived += 
+            process.OutputDataReceived +=
                 (s, e) => OnRaiseMessageReceivedEvent(MessageArgsCreator.Invoke(e));
-            process.ErrorDataReceived += 
+            process.ErrorDataReceived +=
                 (s, e) => OnRaiseMessageReceivedEvent(MessageArgsCreator.Invoke(e));
 
             process.Start();
@@ -52,6 +88,13 @@ namespace Monitor.Agent.Console
             process.CancelOutputRead();
         }
 
+        /// <summary>
+        /// Executes the specified action.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <remarks>
+        /// This is currently used only for testing purposes
+        /// </remarks>
         public void Execute(Action action)
         {
             processStartInfo.RedirectStandardInput = true;

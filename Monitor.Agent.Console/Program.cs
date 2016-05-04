@@ -1,6 +1,7 @@
-﻿using Monitor.Core;
+﻿using System;
+
+using Monitor.Core;
 using Monitor.Handlers.Redis;
-using System;
 
 namespace Monitor.Agent.Console
 {

@@ -1,6 +1,7 @@
-﻿using Monitor.Core;
-using System;
+﻿using System;
 using System.Diagnostics;
+
+using Monitor.Core;
 
 namespace Monitor.Agent.Console
 {
@@ -9,8 +10,8 @@ namespace Monitor.Agent.Console
     /// </summary>
     public class ProcessMonitor : IMonitor<DefaultMessage>
     {
-        private readonly IProcess _process;
-        private readonly IPublishMessages<DefaultMessage> _messagePublisher;
+        private readonly IProcess process;
+        private readonly IPublishMessages<DefaultMessage> messagePublisher;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessMonitor"/> class.
@@ -18,6 +19,7 @@ namespace Monitor.Agent.Console
         /// <param name="publisher">The publisher.</param>
         /// <param name="processInfo">The process information.</param>
         /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <param name="publisher"></param> or <param name="processInfo"></param> are null
         /// </exception>
         public ProcessMonitor(IPublishMessages<DefaultMessage> publisher, IProcess processInfo)
         {
@@ -27,9 +29,9 @@ namespace Monitor.Agent.Console
             if (processInfo == null)
                 throw new ArgumentNullException(nameof(processInfo));
 
-            _messagePublisher = publisher;
-            _process = processInfo;
-            _process.MessageArgsCreator = CreateMessageArgs;
+            messagePublisher = publisher;
+            process = processInfo;
+            process.MessageArgsCreator = CreateMessageArgs;
         }
 
         /// <summary>
@@ -54,17 +56,17 @@ namespace Monitor.Agent.Console
         /// <param name="messageHandler">The message handler.</param>
         private void StartProcess(EventHandler<MessageEventArgs> messageHandler)
         {
-            _process.Execute(messageHandler);
+            this.process.Execute(messageHandler);
         }
 
         /// <summary>
         /// Creates the message arguments from DataReceivedEventArgs.
         /// </summary>
         /// <param name="e">The <see cref="DataReceivedEventArgs"/> instance containing the event data.</param>
-        /// <returns></returns>
+        /// <returns>Message event arguments</returns>
         private MessageEventArgs CreateMessageArgs(DataReceivedEventArgs e)
         {
-            var message = new DefaultMessage(_messagePublisher.Channel, _messagePublisher.Origin)
+            var message = new DefaultMessage(this.messagePublisher.Channel, this.messagePublisher.Origin)
             {
                 Content = e.Data
             };
@@ -78,8 +80,9 @@ namespace Monitor.Agent.Console
         /// <param name="e">The <see cref="MessageEventArgs"/> instance containing the event data.</param>
         private void MessageHandler(object sender, MessageEventArgs e)
         {
-            _messagePublisher.Publish((DefaultMessage)e.Message);
-            //Should continue output from process (like tee)
+            this.messagePublisher.Publish((DefaultMessage)e.Message);
+
+            // Should continue output from process (like tee)
             System.Console.WriteLine(e.Message.Content);
         }
 
@@ -90,9 +93,9 @@ namespace Monitor.Agent.Console
         /// <param name="e">The <see cref="MessageEventArgs"/> instance containing the event data.</param>
         private async void MessageHandlerAsync(object sender, MessageEventArgs e)
         {
-            //Should continue output from process (like tee)
+            // Should continue output from process (like tee)
             System.Console.WriteLine(e.Message.Content);
-            await _messagePublisher.PublishAsync((DefaultMessage)e.Message);
+            await this.messagePublisher.PublishAsync((DefaultMessage)e.Message);
         }
     }
 }

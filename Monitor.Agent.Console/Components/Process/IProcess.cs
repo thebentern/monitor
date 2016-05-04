@@ -9,16 +9,18 @@ namespace Monitor.Agent.Console
     public interface IProcess
     {
         /// <summary>
+        /// Occurs when Message is received
+        /// </summary>
+        event EventHandler<MessageEventArgs> RaiseMessageReceived;
+
+        /// <summary>
         /// Gets or sets the message arguments creator.
         /// </summary>
         /// <value>
         /// The message arguments creator.
         /// </value>
         Func<DataReceivedEventArgs, MessageEventArgs> MessageArgsCreator { get; set; }
-        /// <summary>
-        /// Occurs when Message is received
-        /// </summary>
-        event EventHandler<MessageEventArgs> RaiseMessageReceived;
+
         /// <summary>
         /// Executes process with the specified message handler.
         /// </summary>

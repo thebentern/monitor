@@ -8,7 +8,7 @@ namespace Monitor.Handlers.Redis
     /// </summary>
     public class RedisSubscription : IDisposable
     {
-        private readonly ConnectionMultiplexer _redis;
+        private readonly ConnectionMultiplexer redis;
 
         protected ISubscriber Subscriber;
         protected RedisChannel RedisChannel;
@@ -21,9 +21,9 @@ namespace Monitor.Handlers.Redis
         public RedisSubscription(string host, string channel)
         {
             Channel = channel;
-            _redis = ConnectionMultiplexer.Connect(host);
+            this.redis = ConnectionMultiplexer.Connect(host);
             RedisChannel = new RedisChannel(channel, RedisChannel.PatternMode.Literal);
-            Subscriber = _redis.GetSubscriber();
+            Subscriber = this.redis.GetSubscriber();
         }
 
         /// <summary>
@@ -37,6 +37,6 @@ namespace Monitor.Handlers.Redis
         /// <summary>
         /// Releases resources.
         /// </summary>
-        public void Dispose() => _redis?.Close();
+        public void Dispose() => this.redis?.Close();
     }
 }

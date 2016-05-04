@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Arguments\AppConfig.cs" />
     <Compile Include="Components\Arguments\ArgumentSetup.cs" />
     <Compile Include="Components\Arguments\ConsoleAgentArgs.cs" />
     <Compile Include="Components\Arguments\MessageEventArgs.cs" />
@@ -80,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Config.yaml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

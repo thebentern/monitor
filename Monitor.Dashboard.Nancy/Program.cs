@@ -1,24 +1,25 @@
-﻿using Microsoft.Owin.Hosting;
-using System;
+﻿using System;
+
+using Microsoft.Owin.Hosting;
 
 namespace Monitor.Dashboard.Nancy
 {
     /// <summary>
     /// Nancy Dashboard for Monitor
     /// </summary>
-    class Program
+    public class Program
     {
         /// <summary>
         /// Starts the self-hosted web application
         /// </summary>
         /// <param name="args">The arguments.</param>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            const string url = "http://+:8080";
+            const string Url = "http://+:8080";
 
-            using (WebApp.Start<Startup>(url))
+            using (WebApp.Start<Startup>(Url))
             {
-                Console.WriteLine("Running on {0}", url);
+                Console.WriteLine("Running on {0}", Url);
                 Console.WriteLine("Press enter to exit");
                 Console.ReadLine();
             }

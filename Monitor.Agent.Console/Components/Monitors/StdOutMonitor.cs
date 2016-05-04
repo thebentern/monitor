@@ -1,7 +1,8 @@
-﻿using Monitor.Core;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
+
+using Monitor.Core;
 
 namespace Monitor.Agent.Console
 {
@@ -10,17 +11,22 @@ namespace Monitor.Agent.Console
     /// </summary>
     public sealed class StdOutMonitor : IMonitor<DefaultMessage>
     {
-        private readonly IPublishMessages<DefaultMessage> _messagePublisher;
+        private readonly IPublishMessages<DefaultMessage> messagePublisher;
 
-        public Stream StdOutStream;
-        public Stream StdInStream;
-
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StdOutMonitor"/> class.
+        /// </summary>
+        /// <param name="publisher">The publisher.</param>
+        /// <param name="stdInStream">The standard in stream.</param>
+        /// <param name="stdOutStream">The standard out stream.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown if any of the arguments are null
+        /// </exception>
         public StdOutMonitor(IPublishMessages<DefaultMessage> publisher, Stream stdInStream, Stream stdOutStream)
         {
             if (publisher == null)
                 throw new ArgumentNullException(nameof(publisher));
-            _messagePublisher = publisher;
+            this.messagePublisher = publisher;
 
             if (stdInStream == null)
                 throw new ArgumentNullException(nameof(stdInStream));
@@ -30,6 +36,22 @@ namespace Monitor.Agent.Console
                 throw new ArgumentNullException(nameof(stdOutStream));
             StdOutStream = stdOutStream;
         }
+
+        /// <summary>
+        /// Gets or sets the standard out stream.
+        /// </summary>
+        /// <value>
+        /// The standard out stream.
+        /// </value>
+        public Stream StdOutStream { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the standard in stream.
+        /// </summary>
+        /// <value>
+        /// The standard in stream.
+        /// </value>
+        public Stream StdInStream { get; set; }
 
         /// <summary>
         /// Monitors this instance of the StdIn stream of messages coming into the Console Agent
@@ -43,8 +65,9 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    _messagePublisher.Publish(CreateDefaultMessage(Encoding.GetEncoding(0).GetString(buffer)));
-                    //Should continue output from process (like tee)
+                    this.messagePublisher.Publish(CreateDefaultMessage(Encoding.GetEncoding(0).GetString(buffer)));
+                    
+                    // Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }
             }
@@ -62,8 +85,9 @@ namespace Monitor.Agent.Console
                 int bytes;
                 while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    await _messagePublisher.PublishAsync(CreateDefaultMessage(Encoding.GetEncoding(0).GetString(buffer)));
-                    //Should continue output from process (like tee)
+                    await this.messagePublisher.PublishAsync(CreateDefaultMessage(Encoding.GetEncoding(0).GetString(buffer)));
+                    
+                    // Should continue output from process (like tee)
                     stdout.Write(buffer, 0, bytes);
                 }
             }
@@ -73,10 +97,10 @@ namespace Monitor.Agent.Console
         /// Creates a DefaultMessage with the specified content
         /// </summary>
         /// <param name="messageContent">Content of the message.</param>
-        /// <returns></returns>
+        /// <returns>DefaultMessage with the specified content</returns>
         private DefaultMessage CreateDefaultMessage(string messageContent)
         {
-            return new DefaultMessage(_messagePublisher.Channel, _messagePublisher.Origin)
+            return new DefaultMessage(this.messagePublisher.Channel, this.messagePublisher.Origin)
             {
                 Content = messageContent
             };

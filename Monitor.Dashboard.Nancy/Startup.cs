@@ -1,5 +1,6 @@
-﻿using Owin;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
+
+using Owin;
 
 namespace Monitor.Dashboard.Nancy
 {

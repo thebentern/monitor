@@ -15,6 +15,7 @@ namespace Monitor.Core
         /// The channel.
         /// </value>
         string Channel { get; set; }
+
         /// <summary>
         /// Gets or sets the message subscription Origin.
         /// </summary>
@@ -22,6 +23,7 @@ namespace Monitor.Core
         /// The origin.
         /// </value>
         string Origin { get; set; }
+
         /// <summary>
         /// Gets or sets the message Timestamp.
         /// </summary>
@@ -29,6 +31,7 @@ namespace Monitor.Core
         /// The timestamp.
         /// </value>
         DateTime Timestamp { get; set; }
+
         /// <summary>
         /// Gets or sets the message Content.
         /// </summary>
@@ -36,6 +39,7 @@ namespace Monitor.Core
         /// The content.
         /// </value>
         string Content { get; set; }
+
         /// <summary>
         /// Gets or sets the message's Custom Attributes.
         /// </summary>
